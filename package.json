@@ -12,6 +12,32 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "seeker-sidebar",
+          "icon": "assets/icon.svg",
+          "title": "Seeker"
+        }
+      ]
+    },
+    "views": {
+      "seeker-sidebar": [
+        {
+          "id": "seeker-collections-tree",
+          "name": "Collections",
+          "contextualTitle": "Collections",
+          "type": "tree"
+        },
+        {
+          "id": "seeker-history-tree",
+          "name": "History",
+          "contextualTitle": "History",
+          "type": "tree",
+          "icon": "$(briefcase)"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "adeso-seeker.helloWorld",
