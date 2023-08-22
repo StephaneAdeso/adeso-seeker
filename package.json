@@ -1,7 +1,7 @@
 {
-  "name": "adeso-apify",
-  "displayName": "apify",
-  "description": "Free alternative to postman and thunderclient.",
+  "name": "adeso-seeker",
+  "displayName": "seeker",
+  "description": "Free and opensource alternative to postman and thunderclient.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.81.0"
@@ -14,7 +14,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "adeso-apify.helloWorld",
+        "command": "adeso-seeker.helloWorld",
         "title": "Hello World"
       }
     ]

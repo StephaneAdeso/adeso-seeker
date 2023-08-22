@@ -1,6 +1,6 @@
-# adeso-apify README
+# adeso-seeker README
 
-This is the README for your extension "adeso-apify". After writing up a brief description, we recommend including the following sections.
+This is the README for your extension "adeso-seeker". After writing up a brief description, we recommend including the following sections.
 
 ## Features
 
