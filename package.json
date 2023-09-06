@@ -24,17 +24,22 @@
     "views": {
       "seeker-sidebar": [
         {
-          "id": "seeker-collections-tree",
+          "id": "seeker.sidebarView",
           "name": "Collections",
           "contextualTitle": "Collections",
+          "type": "webview"
+        },
+        {
+          "id": "seeker.environments-tree",
+          "name": "Environments",
+          "contextualTitle": "Environments",
           "type": "tree"
         },
         {
-          "id": "seeker-history-tree",
+          "id": "seeker.history-tree",
           "name": "History",
           "contextualTitle": "History",
-          "type": "tree",
-          "icon": "$(briefcase)"
+          "type": "tree"
         }
       ]
     },
