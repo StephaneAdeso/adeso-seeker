@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { UtilityService as Us } from '../../domain/services/util.service';
 
 export class SeekerSidebarViewProvider implements vscode.WebviewViewProvider {
 
