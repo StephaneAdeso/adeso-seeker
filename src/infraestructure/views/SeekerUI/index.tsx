@@ -7,6 +7,7 @@ root.render(
   <>
     <React.StrictMode>
       <h1>baby</h1>
+      <input></input>
     </React.StrictMode>
   </>
 );
