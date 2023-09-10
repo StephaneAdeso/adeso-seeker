@@ -1,13 +1,13 @@
 import React = require("react");
 import { createRoot } from "react-dom/client";
+import { App } from "./App";
 
 const root = createRoot(document.getElementById("seekerSideBar")!);
 
 root.render(
   <>
     <React.StrictMode>
-      <h1>baby</h1>
-      <input></input>
+      <App />
     </React.StrictMode>
   </>
 );
