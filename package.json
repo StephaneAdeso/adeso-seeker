@@ -2,6 +2,7 @@
   "name": "adeso-seeker",
   "displayName": "seeker",
   "description": "Free and opensource alternative to postman and thunderclient.",
+  "publisher": "StephaneAdeso",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.81.0"
@@ -63,6 +64,7 @@
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
+    "@types/lowdb": "^1.0.12",
     "@types/mocha": "^10.0.1",
     "@types/node": "20.2.5",
     "@types/react": "^18.2.21",
@@ -83,6 +85,7 @@
   },
   "dependencies": {
     "@vscode/webview-ui-toolkit": "^1.2.2",
+    "lowdb": "^6.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
