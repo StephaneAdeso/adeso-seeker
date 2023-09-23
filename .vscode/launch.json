@@ -6,16 +6,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Extension",
-      "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}",
-        "--disable-extensions"
-      ],
-      "preLaunchTask": "npm: watch",
-      "request": "launch",
-      "type": "extensionHost"
-    },
-    {
       "name": "Run Extension",
       "type": "extensionHost",
       "request": "launch",
@@ -41,15 +31,42 @@
       "preLaunchTask": "tasks: watch-tests"
     },
     {
-      "name": "Launch Extension with logs",
+      "name": "Launch Extension",
       "args": [
         "--extensionDevelopmentPath=${workspaceFolder}",
         "--disable-extensions"
       ],
       "preLaunchTask": "npm: watch",
+      "sourceMaps": true,
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "request": "launch",
+      "type": "extensionHost"
+    },
+    {
+      "name": "Launch Extension with log ziped",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--disable-extensions"
+      ],
+      "preLaunchTask": "npm: watch",
+      "sourceMaps": true,
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
       "request": "launch",
       "type": "extensionHost",
       "trace": true
+    },
+    {
+      "name": "Launch Extension with logs txt",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--disable-extensions"
+      ],
+      "preLaunchTask": "npm: watch",
+      "sourceMaps": true,
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "request": "launch",
+      "type": "extensionHost",
+      "trace": { "logFile": "${workspaceFolder}/log.txt" }
     }
   ]
 }

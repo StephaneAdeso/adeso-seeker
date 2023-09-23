@@ -53,9 +53,9 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
-    "compile": "webpack --mode development --progress",
-    "watch": "webpack --mode development --progress --watch",
-    "package": "webpack --mode production ",
+    "compile": "webpack --node-env development --progress",
+    "watch": "webpack --node-env development --progress --watch",
+    "package": "webpack --node-env production ",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",

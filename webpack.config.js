@@ -9,16 +9,13 @@ const miniCssExtractPlugin = require('mini-css-extract-plugin');
 //@ts-check
 /** @typedef {import('webpack').Configuration} WebpackConfig **/
 
-const commonConfig = (webpackEnv) => {
-  const isEnvDevelopment = webpackEnv === 'development';
-  const isEnvProduction = webpackEnv === 'production';
+const commonConfig = (env, argv) => {
+  const isProduction = argv.nodeEnv === 'production';
 
   return {
-    mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
-    bail: isEnvProduction,
-    devtool: isEnvProduction
-      ? 'source-map'
-      : isEnvDevelopment && 'eval-cheap-module-source-map',
+    mode: isProduction ? 'production' : 'development',
+    bail: isProduction,
+    devtool: isProduction ? 'none' : 'source-map',
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
@@ -49,7 +46,8 @@ const commonConfig = (webpackEnv) => {
         },
         {
           test: /\.css$/i,
-          use: [miniCssExtractPlugin.loader, 'css-loader']
+          use: [miniCssExtractPlugin.loader, 'css-loader'],
+          sideEffects: true
         }
       ]
     },
@@ -71,9 +69,9 @@ const commonConfig = (webpackEnv) => {
 };
 
 // extension sources
-const extensionConfig = (webpackEnv) => {
+const extensionConfig = (env, argv) => {
   return {
-    ...commonConfig(webpackEnv),
+    ...commonConfig(env, argv),
     target: 'node',
     entry: './src/extension.ts',
     output: {
@@ -88,9 +86,9 @@ const extensionConfig = (webpackEnv) => {
 };
 
 // react sources
-const seekerUIConfig = (webpackEnv) => {
+const seekerUIConfig = (env, argv) => {
   return {
-    ...commonConfig(webpackEnv),
+    ...commonConfig(env, argv),
     entry: './src/infraestructure/views/SeekerUI/index.tsx',
     output: {
       path: path.resolve(__dirname, 'dist'),
