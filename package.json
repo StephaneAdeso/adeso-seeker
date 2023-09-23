@@ -46,10 +46,30 @@
     },
     "commands": [
       {
-        "command": "adeso-seeker.helloWorld",
-        "title": "Hello World"
+        "command": "adeso-seeker.new-collection",
+        "title": "New collection",
+        "icon": "$(add)",
+        "category": "new"
+      },
+      {
+        "command": "adeso-seeker.new-request",
+        "title": "New request",
+        "category": "adeso-seeker"
       }
-    ]
+    ],
+    "menus": {
+      
+      "view/title": [
+        {
+          "command": "adeso-seeker.new-collection",
+          "group": "new"
+        },
+        {
+          "command": "adeso-seeker.new-request",
+          "group": "new"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",

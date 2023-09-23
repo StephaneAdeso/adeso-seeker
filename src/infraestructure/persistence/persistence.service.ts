@@ -2,6 +2,8 @@ import * as vscode from 'vscode';
 import { LowDbAdapter } from './lowdb.adapter';
 import * as fs from 'fs';
 
+const repository = LowDbAdapter.getInstance();
+
 export class PersistanceService {
   private static instance: PersistanceService | null = null;
 
@@ -16,7 +18,7 @@ export class PersistanceService {
 
   initService(context: vscode.ExtensionContext) {
     this.createGlobalStorageFolder(context.globalStorageUri.fsPath);
-    LowDbAdapter.getInstance().initDB(context.globalStorageUri.fsPath);
+    repository.initDB(context.globalStorageUri.fsPath);
   }
 
   /**

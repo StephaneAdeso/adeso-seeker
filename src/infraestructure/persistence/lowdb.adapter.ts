@@ -19,9 +19,9 @@ export class LowDbAdapter implements PersistenceRepository {
   private globalStoragePath: string | null = null;
 
   // RequestDB
-  private requestDbName = 'requestDB.json';
-  private requestDbPath: string | null = null;
-  private requestDB: LowSync<SeekerDb> | null = null;
+  private seekerDbName = 'SeekerDB.json';
+  private seekerDbPath: string | null = null;
+  private seekerDB: LowSync<SeekerDb> | null = null;
 
   private constructor() {}
 
@@ -35,19 +35,19 @@ export class LowDbAdapter implements PersistenceRepository {
   initDB(globalStoragePath: string): void {
     this.globalStoragePath = globalStoragePath;
 
-    this.requestDbPath = path.join(globalStoragePath, this.requestDbName);
+    this.seekerDbPath = path.join(globalStoragePath, this.seekerDbName);
 
     try {
       // Create or connect to the database
       const defaultData: SeekerDb = { environments: [], collections: [] };
-      this.requestDB = new LowSync<SeekerDb>(
-        new JSONFileSync<SeekerDb>(this.requestDbPath),
+      this.seekerDB = new LowSync<SeekerDb>(
+        new JSONFileSync<SeekerDb>(this.seekerDbPath),
         defaultData
       );
-      this.requestDB.write();
+      this.seekerDB.write();
     } catch (error) {
       console.log(
-        `Error creating database: ${this.requestDbName}.json ...  error: ${error}`
+        `Error creating database: ${this.seekerDbName}.json ...  error: ${error}`
       );
     }
   }

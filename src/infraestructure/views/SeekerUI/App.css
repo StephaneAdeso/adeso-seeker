@@ -1,0 +1,19 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.app {
+  height: 100%;
+}
+
+body {
+  background-color: var(--background-color);
+  color           : var(--text-color);
+  border-color    : var(--border-color);
+  font-family     : var(--font-family);
+  padding         : 0;
+}
+
+
