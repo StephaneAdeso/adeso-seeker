@@ -3,38 +3,41 @@
 import * as vscode from 'vscode';
 import { SeekerSidebarViewProvider } from './infraestructure/providers/seeker-sidebar.view-provider';
 import { PersistanceService } from './infraestructure/persistence/persistence.service';
-
+import { newCollection, newRequest } from './infraestructure/commands';
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+  // init data base
+  PersistanceService.getInstance().initService(context);
 
+  // The command has been defined in the package.json file
+  // Now provide the implementation of the command with registerCommand
+  // The commandId parameter must match the command field in package.json
 
+  context.subscriptions.push(...registerCommands());
 
-
-	PersistanceService.getInstance().initService(context);
-
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "adeso-seeker" is now active!');
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('adeso-seeker.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from seeker!');
-	});
-
-	context.subscriptions.push(disposable);
-
-
-	// sidebarViews
-	const sidebarProvider = new SeekerSidebarViewProvider(context.extensionUri);
-	vscode.window.registerWebviewViewProvider(SeekerSidebarViewProvider.viewType, sidebarProvider);
-
+  // sidebarViews
+  const sidebarProvider = new SeekerSidebarViewProvider(context.extensionUri);
+  vscode.window.registerWebviewViewProvider(
+    SeekerSidebarViewProvider.viewType,
+    sidebarProvider
+  );
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() { }
+export function deactivate() {}
+
+const registerCommands = () => {
+  const disposables: vscode.Disposable[] = [];
+
+  disposables.push(
+    vscode.commands.registerCommand('adeso-seeker.new-request', newRequest),
+    vscode.commands.registerCommand(
+      'adeso-seeker.new-collection',
+      newCollection
+    )
+  );
+
+  return disposables;
+};

@@ -46,27 +46,33 @@
     },
     "commands": [
       {
-        "command": "adeso-seeker.new-collection",
-        "title": "New collection",
-        "icon": "$(add)",
-        "category": "new"
-      },
-      {
         "command": "adeso-seeker.new-request",
         "title": "New request",
-        "category": "adeso-seeker"
+        "icon": "$(add)",
+        "category": "Seeker"
+      },
+      {
+        "command": "adeso-seeker.new-collection",
+        "title": "New collection",
+        "category": "Seeker"
       }
     ],
     "menus": {
-      
       "view/title": [
         {
-          "command": "adeso-seeker.new-collection",
-          "group": "new"
+          "command": "adeso-seeker.new-request",
+          "when": "view == seeker.sidebarView",
+          "group": "navigation@1"
         },
         {
           "command": "adeso-seeker.new-request",
-          "group": "new"
+          "when": "view == seeker.sidebarView",
+          "group": "seekergroup1@1"
+        },
+        {
+          "command": "adeso-seeker.new-collection",
+          "when": "view == seeker.sidebarView",
+          "group": "seekergroup1@2"
         }
       ]
     }
