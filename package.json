@@ -25,7 +25,7 @@
     "views": {
       "seeker-sidebar": [
         {
-          "id": "seeker.sidebarView",
+          "id": "seeker.collectionsSidebar",
           "name": "Collections",
           "contextualTitle": "Collections",
           "type": "webview"
@@ -61,17 +61,17 @@
       "view/title": [
         {
           "command": "adeso-seeker.new-request",
-          "when": "view == seeker.sidebarView",
+          "when": "view == seeker.collectionsSidebar",
           "group": "navigation@1"
         },
         {
           "command": "adeso-seeker.new-request",
-          "when": "view == seeker.sidebarView",
+          "when": "view == seeker.collectionsSidebar",
           "group": "seekergroup1@1"
         },
         {
           "command": "adeso-seeker.new-collection",
-          "when": "view == seeker.sidebarView",
+          "when": "view == seeker.collectionsSidebar",
           "group": "seekergroup1@2"
         }
       ]

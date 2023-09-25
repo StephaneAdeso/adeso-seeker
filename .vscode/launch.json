@@ -9,6 +9,7 @@
       "name": "Run Extension (default)",
       "type": "extensionHost",
       "request": "launch",
+      "sourceMaps": true,
       "args": [
         "--extensionDevelopmentPath=${workspaceFolder}",
         "--disable-extensions"

@@ -3,8 +3,22 @@
 'use strict';
 
 const path = require('path');
+const fs = require('fs');
 const terserPlugin = require('terser-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const cleanDistDirectory = () => {
+  const distPath = path.resolve(__dirname, 'dist');
+
+  // Verificar si 'dist' existe
+  if (fs.existsSync(distPath)) {
+    // Eliminar todos los archivos en 'dist'
+    fs.readdirSync(distPath).forEach((file) => {
+      const filePath = path.resolve(distPath, file);
+      fs.unlinkSync(filePath);
+    });
+  }
+};
 
 //@ts-check
 /** @typedef {import('webpack').Configuration} WebpackConfig **/
@@ -15,7 +29,7 @@ const commonConfig = (env, argv) => {
   return {
     mode: isProduction ? 'production' : 'development',
     bail: isProduction,
-    devtool: isProduction ? 'none' : 'source-map',
+    devtool: isProduction ? 'none' : 'inline-source-map',
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
@@ -51,6 +65,9 @@ const commonConfig = (env, argv) => {
         }
       ]
     },
+    externals: {
+      vscode: 'commonjs vscode'
+    },
     optimization: {
       minimize: true,
       minimizer: [
@@ -73,14 +90,13 @@ const extensionConfig = (env, argv) => {
   return {
     ...commonConfig(env, argv),
     target: 'node',
-    entry: './src/extension.ts',
+    entry: path.resolve(__dirname, 'src', 'extension.ts'),
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: 'extension.js',
-      libraryTarget: 'commonjs2'
-    },
-    externals: {
-      vscode: 'commonjs vscode'
+      library: {
+        type: 'commonjs2'
+      }
     }
   };
 };
@@ -89,12 +105,20 @@ const extensionConfig = (env, argv) => {
 const seekerUIConfig = (env, argv) => {
   return {
     ...commonConfig(env, argv),
-    entry: './src/infraestructure/views/SeekerUI/index.tsx',
+    entry: path.resolve(
+      __dirname,
+      'src',
+      'infraestructure',
+      'SeekerUI',
+      'index.tsx'
+    ),
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'seeker-ui.js'
+      filename: 'seekerUi.js',
+      sourceMapFilename: '[file].js.map'
     }
   };
 };
 
+cleanDistDirectory();
 module.exports = [extensionConfig, seekerUIConfig];

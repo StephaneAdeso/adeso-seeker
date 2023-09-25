@@ -1,17 +1,14 @@
-interface EnvConfig {
-    dbScriptPath: string
-}
-
-
-const development: EnvConfig = {
-    dbScriptPath: "./dev"
+type SeekerEnvironment = {
+  dbScriptPath: string;
 };
 
-const production: EnvConfig = {
-    dbScriptPath: "./dev"
+const development: SeekerEnvironment = {
+  dbScriptPath: './dev'
 };
 
-export const environment: EnvConfig = process.env.NODE_ENV === "development" ? development : production;
+const production: SeekerEnvironment = {
+  dbScriptPath: './pro'
+};
 
-
-
+export const environment: SeekerEnvironment =
+  process.env.NODE_ENV === 'development' ? development : production;

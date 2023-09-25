@@ -1,5 +1,9 @@
+# folders
 out
 dist
 node_modules
 .vscode-test/
+
+#files
+package-lock.json
 *.vsix
