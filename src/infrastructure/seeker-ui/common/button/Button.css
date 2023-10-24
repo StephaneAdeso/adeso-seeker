@@ -1,0 +1,41 @@
+.skr-button {
+  display: flex;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 2px;
+  font-size: var(--vscode-font-size);
+  font-family: var(--vscode-font-family);
+  cursor: pointer;
+  color: var(--vscode-button-foreground);
+  justify-content: center;
+  background-color: var(--vscode-button-background);
+  white-space: nowrap;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.skr-button:hover {
+  background-color: var(--vscode-button-hoverBackground);
+  color: var(--vscode-button-foreground);
+}
+
+.skr-button__label {
+  line-height: 26px;
+  height: 100%;
+}
+
+.skr-button__icon {
+  height: 100%;
+  line-height: 31px;
+}
+
+.skr-button__icon--hidden-label {
+  font-size: 20px;
+}
+
+.skr-button__icon--before {
+  margin-right: 4px;
+}
+.skr-button__icon--after {
+  margin-left: 4px;
+}

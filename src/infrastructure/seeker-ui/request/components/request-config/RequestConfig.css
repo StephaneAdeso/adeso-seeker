@@ -1,0 +1,11 @@
+@import url('../../../styles.css');
+
+.skr-request-config-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  gap: var(--skr-margin-5);
+}

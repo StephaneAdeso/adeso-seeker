@@ -1,0 +1,130 @@
+.skr-select__container {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 28px;
+  align-items: center;
+}
+
+.skr-select {
+  display: flex;
+  position: relative;
+  border-radius: 2px;
+  text-overflow: ellipsis;
+  height: 100%;
+  width: 100%;
+  font-size: var(--vscode-font-size);
+  font-family: var(--vscode-font-family);
+  cursor: pointer;
+  color: var(--vscode-settings-dropdownForeground);
+  background-color: var(--vscode-settings-dropdownBackground);
+  border: 1px solid var(--vscode-settings-dropdownBorder);
+  user-select: none;
+  flex-wrap: nowrap;
+}
+
+.skr-select--skr-label-before {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.skr-select--skr-label-after {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.skr-select:focus {
+  outline: 1px solid var(--vscode-focusBorder);
+  outline-offset: -1px;
+}
+
+.skr-select__label {
+  margin: 0 6px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+.skr-select__label-icon {
+  width: fit-content;
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.skr-select__icon--after {
+  margin-left: 3px;
+}
+.skr-select__icon--before {
+  margin-right: 3px;
+}
+
+.skr-select__label-icon--open {
+  transform: rotate(180deg);
+}
+
+.skr-select__options-container {
+  box-sizing: border-box;
+  display: none;
+  position: absolute;
+  min-width: max-content;
+  width: 100%;
+  color: var(--vscode-settings-dropdownForeground);
+  background-color: var(--vscode-settings-dropdownBackground);
+  border: 1px solid var(--vscode-settings-dropdownBorder);
+  border-top: none;
+  border-radius: 0 0 2px 2px;
+  top: 26px;
+  z-index: 10;
+}
+
+.skr-select__options-container--open {
+  display: block;
+}
+
+.skr-select__options-container:focus {
+  outline: 1px solid var(--vscode-focusBorder);
+  outline-offset: -1px;
+}
+
+.skr-select__option-item {
+  padding: 4px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s;
+}
+
+.skr-select__option-item:hover {
+  background-color: var(--vscode-button-hoverBackground);
+}
+
+.skr-select__option-item:focus {
+  background-color: var(--vscode-button-hoverBackground);
+  outline: none;
+}
+
+.skr-select__option-item--selected {
+  font-weight: bold;
+  background-color: var(--vscode-button-hoverBackground);
+  outline: none;
+}
+
+.skr-select__skr-label {
+  border: 1px solid var(--vscode-settings-dropdownBorder);
+  padding: 4px 6px;
+  height: 100%;
+}
+
+.skr-select__skr-label--before {
+  border-right: none;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.skr-select__skr-label--after {
+  border-left: none;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}

@@ -1,13 +1,13 @@
 type SeekerEnvironment = {
-  dbScriptPath: string;
+  isProduction: boolean;
 };
 
 const development: SeekerEnvironment = {
-  dbScriptPath: './dev'
+  isProduction: false
 };
 
 const production: SeekerEnvironment = {
-  dbScriptPath: './pro'
+  isProduction: true
 };
 
 export const environment: SeekerEnvironment =

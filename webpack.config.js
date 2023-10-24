@@ -10,9 +10,7 @@ const miniCssExtractPlugin = require('mini-css-extract-plugin');
 const cleanDistDirectory = () => {
   const distPath = path.resolve(__dirname, 'dist');
 
-  // Verificar si 'dist' existe
   if (fs.existsSync(distPath)) {
-    // Eliminar todos los archivos en 'dist'
     fs.readdirSync(distPath).forEach((file) => {
       const filePath = path.resolve(distPath, file);
       fs.unlinkSync(filePath);
@@ -31,7 +29,11 @@ const commonConfig = (env, argv) => {
     bail: isProduction,
     devtool: isProduction ? 'none' : 'inline-source-map',
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.jsx']
+      extensions: ['.ts', '.tsx', '.js', '.jsx'],
+      alias: {
+        react: 'react',
+        'react-dom': 'react-dom'
+      }
     },
     module: {
       rules: [
@@ -108,8 +110,8 @@ const seekerUIConfig = (env, argv) => {
     entry: path.resolve(
       __dirname,
       'src',
-      'infraestructure',
-      'SeekerUI',
+      'infrastructure',
+      'seeker-ui',
       'index.tsx'
     ),
     output: {

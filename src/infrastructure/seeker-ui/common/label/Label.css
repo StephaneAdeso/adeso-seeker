@@ -1,0 +1,6 @@
+.skr-label__container {
+  color: var(--vscode-input-foreground);
+  font-size: var(--vscode-font-size);
+  font-family: var(--vscode-font-family);
+  white-space: nowrap;
+}

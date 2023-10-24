@@ -1,0 +1,18 @@
+@import url('../../../styles.css');
+
+.skr-request-input__container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+  gap: var(--skr-margin-5);
+}
+
+.skr-request-input__items-select {
+  min-width: 80px;
+}
+
+.skr-request-input__items-input-text {
+  width: 100%;
+}

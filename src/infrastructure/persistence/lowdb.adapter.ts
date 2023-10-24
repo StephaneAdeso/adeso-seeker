@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // This adapter stores the info in json files.
 // https://github.com/typicode/lowdb
 // https://www.youtube.com/watch?v=5KjLpaZW4s8

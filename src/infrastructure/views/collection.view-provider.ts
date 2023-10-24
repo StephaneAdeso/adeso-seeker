@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as vscode from 'vscode';
 import { UtilityService as Us } from '../../domain/services/util.service';
 import { DocumentTitles } from '../enums/document-titles.enum';
@@ -26,16 +27,18 @@ export class CollectionSidebarViewProvider
       vscode.Uri.joinPath(this._extensionUri, 'dist', 'seekerUi.js')
     );
 
-    /*   const styleUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, "/dist/main.css"));
-
-    <link href="${styleUri}" rel="stylesheet" type="text/css"/> */
+    const styleUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, 'dist', 'main.css')
+    );
 
     return `<!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>${DocumentTitles.sidebarCollections}</title>
+            
+            <link href="${styleUri}" rel="stylesheet" type="text/css"/> 
+            <title>${DocumentTitles.sidebarCollections}</title>            
         </head>
         <body>    
             

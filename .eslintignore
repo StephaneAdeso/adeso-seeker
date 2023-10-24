@@ -1,0 +1,9 @@
+node_modules
+build
+public
+out
+dist
+
+#files
+*.config.*
+**/*.d.ts

@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import { DocumentTitles } from '../enums/document-titles.enum';
 import { UtilityService as Us } from '../../domain/services/util.service';
+import { DocumentTitles } from '../enums/document-titles.enum';
 
 /**
  * Webviews are launched thru commands. This registers the request webview to
@@ -18,18 +18,19 @@ export const registerRequestWebview = (
         { enableScripts: true }
       );
 
-      requestPanel.webview.html = getWebviewContent(
-        requestPanel,
-        context.extensionUri
-      );
+      requestPanel.webview.html = getWebviewContent(requestPanel, context);
     })
   );
 };
 
 function getWebviewContent(
   panel: vscode.WebviewPanel,
-  extensionUri: vscode.Uri
+  context: vscode.ExtensionContext
 ) {
+  const extensionUri = context.extensionUri;
+  const styleUri = panel.webview.asWebviewUri(
+    vscode.Uri.joinPath(extensionUri, 'dist', 'main.css')
+  );
   const scriptUri = panel.webview.asWebviewUri(
     vscode.Uri.joinPath(extensionUri, 'dist', 'seekerUi.js')
   );
@@ -39,6 +40,8 @@ function getWebviewContent(
       <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          
+          <link href="${styleUri}" rel="stylesheet" type="text/css"/>
           <title>${DocumentTitles.request}</title>          
       </head>
       <body>

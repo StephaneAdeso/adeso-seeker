@@ -7,7 +7,7 @@
     "rootDir": "src",
     "strict": true,
     "outDir": "dist",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "esModuleInterop": true
   },
   "exclude": ["node_modules", "src/test/**/*"]
