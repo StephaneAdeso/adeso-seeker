@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-
 import * as React from 'react';
 import { DocumentTitles } from '../enums/document-titles.enum';
 import './App.css';
@@ -9,7 +7,6 @@ const SidebarCollections = React.lazy(
 );
 const Request = React.lazy(() => import('./request/Request'));
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 const App = () => {
   return <>{renderUI()}</>;
 };

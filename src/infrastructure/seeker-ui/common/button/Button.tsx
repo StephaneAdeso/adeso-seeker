@@ -5,6 +5,7 @@ import './Button.css';
 interface SkrButtonProps {
   className?: string;
   label: string;
+  id?: string;
   icon?: IconType;
   iconPosition?: 'before' | 'after';
   backgroundColor?: string;
@@ -18,6 +19,8 @@ interface SkrButtonProps {
 export const SkrButton: React.FC<SkrButtonProps> = ({
   className = '',
   label = '',
+  // eslint-disable-next-line no-unused-vars
+  id = label,
   icon,
   iconPosition = 'after',
   backgroundColor,

@@ -2,6 +2,8 @@
 
 .skr-request-container {
   padding: var(--skr-margin-10);
+  width: 100%;
+  height: 100%;
 }
 
 .skr-request-config {

@@ -39,6 +39,10 @@ img {
 |      PROPERTIES    |
 --------------------*/
 :root {
+  /* heights */
+  --skr-height-normal: 28px;
+  /* border radius */
+  --skr-border-radius-normal: 2px;
   /* paddings */
   --skr-padding-5: 0.3125rem;
 

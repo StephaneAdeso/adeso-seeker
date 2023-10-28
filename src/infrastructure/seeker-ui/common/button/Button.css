@@ -1,8 +1,8 @@
 .skr-button {
   display: flex;
-  height: 28px;
+  height: var(--skr-height-normal);
   padding: 0 10px;
-  border-radius: 2px;
+  border-radius: var(--skr-border-radius-normal);
   font-size: var(--vscode-font-size);
   font-family: var(--vscode-font-family);
   cursor: pointer;

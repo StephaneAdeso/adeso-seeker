@@ -1,0 +1,53 @@
+/* styles.css */
+
+/* Contenedor de pestañas */
+.skr-tabs-container {
+  width: 100%;
+  height: 100%;
+  font-size: var(--vscode-font-size);
+  font-family: var(--vscode-font-family);
+}
+
+/* Encabezado de la pestaña */
+.skr-tabs-header {
+  display: flex;
+  flex-direction: row;
+  height: var(--skr-height-normal);
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  user-select: none;
+  padding-left: 10px;
+}
+
+/* Estilo para las pestañas */
+.skr-tabs-header__button {
+  background-color: var(--vscode-tab-activeBackground);
+  height: 100%;
+  cursor: pointer;
+  padding: 0 10px 0 10px;
+}
+
+.skr-tabs-header__button--inactive {
+  border: none;
+  outline: none;
+  color: var(--vscode-tab-inactiveForeground);
+}
+
+/* Estilo para la pestaña activa */
+.skr-tab-header__button--active {
+  border-width: 1px 1px 0 1px;
+  border-style: solid;
+  border-color: var(--vscode-input-border);
+  border-radius: var(--skr-border-radius-normal) var(--skr-border-radius-normal)
+    0 0;
+  color: var(--vscode-tab-activeForegroundwhite);
+  position: relative;
+  top: 1px;
+  z-index: 10;
+}
+
+.skr-tab-content--active {
+  border: 1px solid var(--vscode-input-border);
+  border-radius: var(--skr-border-radius-normal);
+}
