@@ -1,6 +1,7 @@
 import { SkrDetails, SkrTabProps } from '../common';
 import { SkrTabContainer } from '../common/tabscontainer/TabsContainer';
-import { SkrRequestConfig, SkrRequestInput } from './components';
+import { SkrInput, SkrRequestConfig, SkrRequestInput } from './components';
+
 import './Request.css';
 
 const Request = () => {
@@ -9,10 +10,14 @@ const Request = () => {
     { id: '2', label: 'Tab 2', children: <p>Contenido de la pestaña 2</p> }
   ];
 
+  const onInputSend = (inputConfig: SkrInput) => {
+    console.log(inputConfig);
+  };
+
   return (
     <div className="skr-request-container">
       <SkrRequestConfig className="skr-request-config"></SkrRequestConfig>
-      <SkrRequestInput></SkrRequestInput>
+      <SkrRequestInput onSend={onInputSend}></SkrRequestInput>
       <SkrDetails classname="skr-request-details" label="Request body" open>
         <SkrTabContainer tabs={tabs} />
       </SkrDetails>

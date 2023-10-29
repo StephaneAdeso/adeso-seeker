@@ -11,7 +11,7 @@ interface SkrButtonProps {
   backgroundColor?: string;
   color?: string;
   fontFamily?: string;
-  onClick?: () => void;
+  onClick?: (value: any) => any;
   hideLabel?: boolean;
   ariaLabel?: string;
 }
