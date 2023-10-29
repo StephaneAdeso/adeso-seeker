@@ -9,3 +9,7 @@
 .skr-request-config {
   margin-bottom: var(--skr-margin-5);
 }
+
+.skr-request-details {
+  margin-top: 10px;
+}
