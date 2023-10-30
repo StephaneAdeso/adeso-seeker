@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { UtilityService as Us } from '../../domain/services/util.service';
+import { UtilityService as Us } from '../../application/services/util.service';
 import { DocumentTitles } from '../enums/document-titles.enum';
 
 /**
