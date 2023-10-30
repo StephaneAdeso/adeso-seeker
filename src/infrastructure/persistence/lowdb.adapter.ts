@@ -5,10 +5,11 @@
 import { LowSync } from 'lowdb';
 import { JSONFileSync } from 'lowdb/node';
 import path from 'path';
-import { PersistenceRepository } from '../../domain/persistence/persistence.repository';
+import { PersistenceRepository } from '../../domain/repositories/persistence.repository';
 import { Environment } from '../../domain/models/environment.model';
 import { Collection } from '../../domain/models/collection.model';
 
+//TODO: Check if it's necesary to use singleton in adapters
 type SeekerDb = {
   environments: Environment[];
   collections: Collection[];

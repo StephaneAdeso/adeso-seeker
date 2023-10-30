@@ -1,3 +1,4 @@
+import { FetchService } from '../../../application/fetch/fetch.service';
 import { SkrDetails, SkrTabProps } from '../common';
 import { SkrTabContainer } from '../common/tabscontainer/TabsContainer';
 import { SkrInput, SkrRequestConfig, SkrRequestInput } from './components';
@@ -11,7 +12,10 @@ const Request = () => {
   ];
 
   const onInputSend = (inputConfig: SkrInput) => {
-    console.log(inputConfig);
+    FetchService.getInstance().execute({
+      type: inputConfig.type,
+      url: inputConfig.url
+    });
   };
 
   return (

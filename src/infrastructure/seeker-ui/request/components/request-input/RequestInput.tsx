@@ -12,7 +12,7 @@ import './RequestInput.css';
 type action = 'send' | 'send and download' | undefined;
 export interface SkrInput {
   type: HttpVerb | undefined;
-  request: string | undefined;
+  url: string | undefined;
   action: action;
 }
 
@@ -38,13 +38,13 @@ export const SkrRequestInput = ({
   // Object returned when user submit.
   const input: SkrInput = {
     type: type,
-    request: text,
+    url: text,
     action: undefined
   };
 
   const handleTextChange = (text: string) => {
     setText(text);
-    input.request = text;
+    input.url = text;
   };
 
   const handleSelect = (typeId: HttpVerb) => {
