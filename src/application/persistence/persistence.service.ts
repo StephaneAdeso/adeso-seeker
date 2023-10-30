@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { LowDbAdapter } from './lowdb.adapter';
+import { LowDbAdapter } from '../../infrastructure/persistence/lowdb.adapter';
 import * as fs from 'fs';
 
 const repository = LowDbAdapter.getInstance();

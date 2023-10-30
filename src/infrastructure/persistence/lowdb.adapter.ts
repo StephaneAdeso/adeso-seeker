@@ -5,7 +5,7 @@
 import { LowSync } from 'lowdb';
 import { JSONFileSync } from 'lowdb/node';
 import path from 'path';
-import { PersistenceRepository } from './persistence.repository';
+import { PersistenceRepository } from '../../domain/persistence/persistence.repository';
 import { Environment } from '../../domain/models/environment.model';
 import { Collection } from '../../domain/models/collection.model';
 
