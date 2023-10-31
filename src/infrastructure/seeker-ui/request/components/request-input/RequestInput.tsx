@@ -11,8 +11,8 @@ import './RequestInput.css';
 
 type action = 'send' | 'send and download' | undefined;
 export interface SkrInput {
-  type: HttpVerb | undefined;
-  url: string | undefined;
+  type: HttpVerb;
+  url: string;
   action: action;
 }
 

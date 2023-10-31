@@ -1,4 +1,8 @@
-import { FetchConfig } from '../../domain/interfaces/fetch.interface';
+import { Observable } from 'rxjs';
+import {
+  FetchConfig,
+  FetchResponse
+} from '../../domain/interfaces/fetch.interface';
 import { AxiosAdapter as Adapter } from '../../infrastructure/fetch/axios.adapter';
 
 export class FetchService {
@@ -13,7 +17,7 @@ export class FetchService {
     return this.instance;
   }
 
-  execute(queryConfig: FetchConfig) {
-    new Adapter().execute(queryConfig);
+  execute(queryConfig: FetchConfig): Observable<FetchResponse> {
+    return new Adapter().execute(queryConfig);
   }
 }
