@@ -16,14 +16,13 @@ import { Subscription } from 'rxjs';
 // COMPONENT-----------------------------------------------------------
 const Request = () => {
   const subscriptions: Subscription = useMemo(() => new Subscription(), []);
-  // https://api.publicapis.org/entries
+  // API for tests: https://api.publicapis.org/entries
   useEffect(() => {
     return () => {
-      console.log('desmontado');
+      console.log('unmounted');
       subscriptions.unsubscribe();
     };
   }, []);
-
   // REQUEST BODY CONFIGURATION-----------------------
   const tabsRequesBody: SkrTabProps[] = [
     {
@@ -46,7 +45,6 @@ const Request = () => {
   ];
 
   const onInputSend = (inputConfig: SkrInput) => {
-    console.log('holitas');
     subscriptions.add(
       FetchService.getInstance()
         .execute({
@@ -55,11 +53,9 @@ const Request = () => {
         })
         .subscribe({
           next: (res: FetchResponse) => {
-            console.log('hola');
             if (res.data) {
               setResponseData(res.data);
-              console.log('res :>> ', res);
-              console.log('res.data :>> ', res.data);
+              console.log('Everything works fine');
             }
           },
           error(err) {
