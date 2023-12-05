@@ -63,7 +63,7 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund --no-optional     
       - name: Build
-        run: npm run build
+        run: npm run package
       - name: save artifact for other jobs
         uses: actions/upload-artifact@v3
         with:
