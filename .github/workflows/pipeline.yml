@@ -9,7 +9,7 @@ on:
 
 jobs:
   cancel_previous_job:
-    runs-on: Ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Cancel previous redundant build
         uses: styfle/cancel-workflow-action@0.12.0
@@ -17,7 +17,7 @@ jobs:
           access_token: ${{ github.token }}
 
   install:
-    runs-on: Ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:     
       - name: Import repository
         uses: actions/checkout@v2
@@ -33,7 +33,7 @@ jobs:
 
   lint:
     needs: install
-    runs-on: Ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:     
       - name: Import repository
         uses: actions/checkout@v2
@@ -50,7 +50,7 @@ jobs:
   
   build:
     needs: install
-    runs-on: Ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:     
       - name: Import repository
         uses: actions/checkout@v2
@@ -72,7 +72,7 @@ jobs:
 
   test:
     needs: [lint, build]
-    runs-on: Ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:     
       - name: Import repository
         uses: actions/checkout@v2
