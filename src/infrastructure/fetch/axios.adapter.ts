@@ -6,9 +6,9 @@ import {
 } from '../../domain/interfaces/fetch.interface';
 import { FetchRepository } from '../../domain/repositories/fetch.repository';
 
-const response: FetchResponse = {
+let response: FetchResponse = {
   config: {},
-  data: '',
+  data: {},
   headers: null,
   request: null,
   status: 400,
@@ -21,17 +21,14 @@ export class AxiosAdapter implements FetchRepository {
       return of(response);
     }
     return from(
-      axios({ method: queryConfig.method, url: queryConfig.url })
+      axios<any, FetchResponse>({
+        method: queryConfig.method,
+        url: queryConfig.url,
+        signal: queryConfig?.controller.signal
+      })
     ).pipe(
       map((res) => {
-        console.log('res :>> ', res);
-        response.config = res.config;
-        response.data = res.data;
-        response.headers = res.headers;
-        response.request = res.request;
-        response.status = res.status;
-        response.statusText = res.statusText;
-        console.log('response :>> ', response);
+        response = res;
         return response;
       })
     );

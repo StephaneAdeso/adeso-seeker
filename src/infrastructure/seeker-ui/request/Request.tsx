@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FetchService } from '../../../application/fetch/fetch.service';
 import { SkrDetails, SkrTabProps } from '../common';
 import { SkrTabContainer } from '../common/tabscontainer/TabsContainer';
@@ -15,14 +15,49 @@ import { Subscription } from 'rxjs';
 
 // COMPONENT-----------------------------------------------------------
 const Request = () => {
-  const subscriptions: Subscription = useMemo(() => new Subscription(), []);
-  // API for tests: https://api.publicapis.org/entries
+  const [responseData, setResponseData] = useState<object>({});
+  // eslint-disable-next-line no-unused-vars
+  const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [error, setError] = useState('');
+
+  let subscription: Subscription | undefined;
+  let abortController: AbortController | undefined;
+
+  const onInputSend = (inputConfig: SkrInput) => {
+    setLoading(true);
+    abortController = new AbortController();
+    subscription = FetchService.getInstance()
+      .execute({
+        method: inputConfig.method,
+        url: inputConfig.url,
+        controller: abortController
+      })
+      .subscribe({
+        next: (res: FetchResponse) => {
+          if (res.data) {
+            setResponseData(res.data);
+          }
+        },
+        error(err) {
+          console.error(err);
+          setError(err);
+        },
+        complete() {
+          setLoading(false);
+        }
+      });
+  };
+
   useEffect(() => {
     return () => {
-      console.log('unmounted');
-      subscriptions.unsubscribe();
+      // cancel request
+      abortController?.abort();
+      // clean the observable suscription
+      subscription?.unsubscribe();
     };
-  }, []);
+  }, [subscription, abortController]);
+
   // REQUEST BODY CONFIGURATION-----------------------
   const tabsRequesBody: SkrTabProps[] = [
     {
@@ -34,7 +69,7 @@ const Request = () => {
   ];
 
   // RESPONSE BODY ------------------------------------
-  const [responseData, setResponseData] = useState({});
+
   const tabsResponseBody: SkrTabProps[] = [
     {
       id: '1',
@@ -43,27 +78,6 @@ const Request = () => {
     },
     { id: '2', label: 'Tab 2', children: <p>Contenido de la pestaña 2</p> }
   ];
-
-  const onInputSend = (inputConfig: SkrInput) => {
-    subscriptions.add(
-      FetchService.getInstance()
-        .execute({
-          method: inputConfig.type,
-          url: inputConfig.url
-        })
-        .subscribe({
-          next: (res: FetchResponse) => {
-            if (res.data) {
-              setResponseData(res.data);
-              console.log('Everything works fine');
-            }
-          },
-          error(err) {
-            console.log('err :>> ', err);
-          }
-        })
-    );
-  };
 
   return (
     <div className="skr-request-container">
