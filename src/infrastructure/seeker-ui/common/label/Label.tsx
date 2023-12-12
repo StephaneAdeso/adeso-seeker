@@ -1,11 +1,15 @@
-import React from 'react';
 import { IconType } from 'react-icons';
 import './Label.css';
+import { CSSProperties, createElement } from 'react';
 
-interface SkrLabelProps {
+export interface SkrLabelProps {
   className?: string;
   label: string;
   icon?: IconType;
+  /** hexadecimal string color */
+  color?: string;
+  /** Example: 'normal', 'bold', 'bolder', 'lighter' and from 100 to 900 */
+  fontWeight?: string;
   iconPosition?: 'before' | 'after';
   hideLabel?: boolean;
   ariaLabel?: string;
@@ -17,25 +21,24 @@ export const SkrLabel = ({
   label = '',
   icon,
   iconPosition = 'after',
+  color,
+  fontWeight,
   hideLabel = false,
   ariaLabel = label || '',
   onClick = () => {}
-}: SkrLabelProps) => {
+}: SkrLabelProps): JSX.Element => {
+  const styleConfig: CSSProperties = { color, fontWeight };
+
   return (
     <span
       className={`skr-label__container ${className}`}
       aria-label={ariaLabel}
       onClick={onClick}
     >
-      {icon && iconPosition === 'before' && (
-        <span>{React.createElement(icon)}</span>
-      )}
+      {icon && iconPosition === 'before' && <span>{createElement(icon)}</span>}
+      {!hideLabel && <span style={styleConfig}>{label}</span>}
 
-      {!hideLabel && label}
-
-      {icon && iconPosition === 'after' && (
-        <span>{React.createElement(icon)}</span>
-      )}
+      {icon && iconPosition === 'after' && <span>{createElement(icon)}</span>}
     </span>
   );
 };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FetchService } from '../../../application/fetch/fetch.service';
-import { SkrDetails, SkrTabProps } from '../common';
+import { SkrDetails, SkrLabel, SkrTabProps, SkrTag } from '../common';
 import { SkrTabContainer } from '../common/tabscontainer/TabsContainer';
 import {
   SkrInput,
@@ -12,10 +12,13 @@ import {
 import './Request.css';
 import { FetchResponse } from '../../../domain/interfaces/fetch.interface';
 import { Subscription } from 'rxjs';
+import { HttpColors } from '../../../domain/enums/http.enum';
 
 // COMPONENT-----------------------------------------------------------
 const Request = () => {
-  const [responseData, setResponseData] = useState<object>({});
+  const [queryResponse, setQueryResponse] = useState<FetchResponse>(
+    {} as FetchResponse
+  );
   // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState(false);
   // eslint-disable-next-line no-unused-vars
@@ -31,12 +34,13 @@ const Request = () => {
       .execute({
         method: inputConfig.method,
         url: inputConfig.url,
-        controller: abortController
+        controller: abortController!
       })
       .subscribe({
         next: (res: FetchResponse) => {
-          if (res.data) {
-            setResponseData(res.data);
+          if (res) {
+            setQueryResponse(res);
+            console.log('res :>> ', res);
           }
         },
         error(err) {
@@ -45,6 +49,7 @@ const Request = () => {
         },
         complete() {
           setLoading(false);
+          //TODO: setduration should be set when ok and when error.
         }
       });
   };
@@ -74,7 +79,11 @@ const Request = () => {
     {
       id: '1',
       label: 'Response',
-      children: <SkrResponse src={responseData}></SkrResponse>
+      children: (
+        <SkrResponse
+          src={queryResponse.data ? queryResponse.data : queryResponse}
+        ></SkrResponse>
+      )
     },
     { id: '2', label: 'Tab 2', children: <p>Contenido de la pestaña 2</p> }
   ];
@@ -87,10 +96,31 @@ const Request = () => {
         <SkrTabContainer tabs={tabsRequesBody} />
       </SkrDetails>
       <SkrDetails classname="skr-request-details" label="Response body">
-        <SkrTabContainer tabs={tabsResponseBody} />
+        <SkrTabContainer tabs={tabsResponseBody}>
+          <SkrTag
+            backgroundColor={HttpColors.success}
+            SkrLabel={<SkrLabel fontWeight="bold" label="Status:" />}
+            type="fill"
+            text="200"
+          />
+          <span>
+            <span className="skr-request__tags-keys">Time:</span>
+            {queryResponse.queryDuration?.time &&
+              queryResponse.queryDuration?.measure &&
+              `${queryResponse.queryDuration.time} ${queryResponse.queryDuration.measure}`}
+          </span>
+          <span>
+            <span className="skr-request__tags-keys">Size:</span>
+            {queryResponse.size?.length &&
+              queryResponse.size?.measure &&
+              `${queryResponse.size.length} ${queryResponse.size.measure}`}
+          </span>
+        </SkrTabContainer>
       </SkrDetails>
     </div>
   );
 };
-
 export default Request;
+//TODO: implement title on span tags. When you hover time or size.
+// TODO: implement status
+// TODO: fix response prefix in data visualization

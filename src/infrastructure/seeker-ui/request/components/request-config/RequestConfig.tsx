@@ -19,7 +19,7 @@ export const SkrRequestConfig = ({ className = '' }: requestConfigProps) => {
     <div className={`skr-request-config-container ${className}`}>
       <SkrSelect
         label="Environment selector"
-        skrLabel={<SkrLabel label="Selected environment"></SkrLabel>}
+        skrLabel={<SkrLabel label="Selected environment" />}
         options={envOptions}
       ></SkrSelect>
       <SkrButton

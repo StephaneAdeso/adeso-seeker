@@ -44,10 +44,10 @@ img {
   /* border radius */
   --skr-border-radius-normal: 2px;
   /* paddings */
-  --skr-padding-5: 0.3125rem;
+  --skr-padding-normal: 0.3125rem;
 
   /* margins */
-  --skr-margin-2: 0.125rem;
-  --skr-margin-5: 0.3125rem;
-  --skr-margin-10: 0.625rem;
+  --skr-margin-xs: 0.125rem;
+  --skr-margin-normal: 0.3125rem;
+  --skr-margin-l: 0.625rem;
 }

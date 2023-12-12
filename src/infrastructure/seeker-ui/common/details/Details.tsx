@@ -1,5 +1,4 @@
-import React from 'react';
-import { ReactNode, useState } from 'react';
+import { ReactNode, createElement, useState } from 'react';
 import { VscChevronRight } from 'react-icons/vsc';
 import './Details.css';
 
@@ -30,7 +29,7 @@ export const SkrDetails = ({
             isOpen ? 'skr-details-header__icon--open' : ''
           }`}
         >
-          {React.createElement(VscChevronRight)}
+          {createElement(VscChevronRight)}
         </span>
 
         <span>{label}</span>

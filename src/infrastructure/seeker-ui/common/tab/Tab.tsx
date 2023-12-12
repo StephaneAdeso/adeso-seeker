@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import './Tab.css';
 export interface SkrTabProps {
   label: string;
@@ -8,7 +8,7 @@ export interface SkrTabProps {
   children?: ReactNode;
 }
 
-export const SkrTab: React.FunctionComponent<SkrTabProps> = ({
+export const SkrTab = ({
   label,
   id = label,
   disabled = false,

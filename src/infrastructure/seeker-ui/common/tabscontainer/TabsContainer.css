@@ -26,6 +26,17 @@
   height: 100%;
   cursor: pointer;
   padding: 0 10px 0 10px;
+  text-wrap: nowrap;
+}
+
+.skr-tabs-header__childrens {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  gap: 15px;
+  padding-right: var(--skr-padding-normal);
 }
 
 .skr-tabs-header__button--inactive {

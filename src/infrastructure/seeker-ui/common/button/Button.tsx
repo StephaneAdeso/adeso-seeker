@@ -16,7 +16,7 @@ interface SkrButtonProps {
   ariaLabel?: string;
 }
 
-export const SkrButton: React.FC<SkrButtonProps> = ({
+export const SkrButton = ({
   className = '',
   label = '',
   // eslint-disable-next-line no-unused-vars
@@ -29,7 +29,7 @@ export const SkrButton: React.FC<SkrButtonProps> = ({
   onClick,
   hideLabel = false,
   ariaLabel = label || ''
-}) => {
+}: SkrButtonProps): JSX.Element => {
   const buttonStyles: React.CSSProperties = {
     backgroundColor,
     fontFamily,

@@ -3,11 +3,13 @@ import { SkrTab, SkrTabProps } from './../index';
 import './TabsContainer.css';
 
 interface TabContainerProps {
+  children?: React.ReactNode;
   tabs: SkrTabProps[];
   className?: string;
 }
 
 export const SkrTabContainer = ({
+  children,
   tabs,
   className = ''
 }: TabContainerProps): JSX.Element => {
@@ -33,8 +35,10 @@ export const SkrTabContainer = ({
             {tab.label}
           </button>
         ))}
+        {children && (
+          <div className="skr-tabs-header__childrens">{children}</div>
+        )}
       </div>
-
       <div className={` skr-tab-content--active`}>
         {tabs.map((tab) => {
           if (tab.id === selectedTab) {

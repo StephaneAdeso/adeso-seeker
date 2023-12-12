@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto';
-import { HttpVerb } from '../enums/http-verbs.enum';
+import { HttpVerb } from '../enums/http.enum';
 import { TreeStructure } from '../interfaces/tree-structure.interface';
 
 export class Request implements TreeStructure {

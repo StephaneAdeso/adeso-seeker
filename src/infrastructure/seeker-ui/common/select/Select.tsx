@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { ReactNode, createElement, useEffect, useRef, useState } from 'react';
 import { IconType } from 'react-icons';
 import { VscChevronDown } from 'react-icons/vsc';
 import './Select.css';
@@ -12,12 +12,19 @@ export interface SkrSelectOption {
   value: any;
 }
 
+// TODO refactor this component and change the properties.
+// We need to separate the title concept from the label.
+// We need to do it in all the components.
+
 interface SkrSelectProps {
+  /** text displayed when you hover the component with the mouse and inside the component*/
   label: string;
   ariaLabel?: string;
-  skrLabel?: React.ReactNode | undefined;
+  /**  text displayed before or after the select component*/
+  skrLabel?: ReactNode;
   skrLabelPosition?: 'before' | 'after';
   className?: string;
+  /** hide the skrLabel */
   hideLabel?: boolean;
   icon?: IconType | undefined;
   iconPosition?: 'before' | 'after';
@@ -124,7 +131,7 @@ export const SkrSelect = ({
                 isOpen ? 'skr-select__label-icon--open' : ''
               }`}
             >
-              {React.createElement(icon)}
+              {createElement(icon)}
             </span>
           )}
 
@@ -138,7 +145,7 @@ export const SkrSelect = ({
                 isOpen ? 'skr-select__label-icon--open' : ''
               }`}
             >
-              {React.createElement(icon)}
+              {createElement(icon)}
             </span>
           )}
         </div>
@@ -163,7 +170,7 @@ export const SkrSelect = ({
             >
               {option.icon && option.iconPosition === 'before' && (
                 <span className="skr-select__icon--before">
-                  {React.createElement(option.icon)}
+                  {createElement(option.icon)}
                 </span>
               )}
 
@@ -171,7 +178,7 @@ export const SkrSelect = ({
 
               {option.icon && option.iconPosition === 'after' && (
                 <span className="skr-select__icon--after">
-                  {React.createElement(option.icon)}
+                  {createElement(option.icon)}
                 </span>
               )}
             </div>

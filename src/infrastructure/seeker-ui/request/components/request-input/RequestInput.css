@@ -6,7 +6,7 @@
   flex-wrap: nowrap;
   align-items: center;
   width: 100%;
-  gap: var(--skr-margin-5);
+  gap: var(--skr-margin-normal);
 }
 
 .skr-request-input__items-select {

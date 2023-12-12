@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { VscArrowCircleDown, VscSend } from 'react-icons/vsc';
-import { HttpVerb } from '../../../../../domain/enums/http-verbs.enum';
+import { HttpVerb } from '../../../../../domain/enums/http.enum';
 import {
   SkrButton,
   SkrSelect,

@@ -1,15 +1,19 @@
 @import url('../styles.css');
 
 .skr-request-container {
-  padding: var(--skr-margin-10);
+  padding: var(--skr-margin-l);
   width: 100%;
   height: 100%;
 }
 
 .skr-request-config {
-  margin-bottom: var(--skr-margin-5);
+  margin-bottom: var(--skr-margin-normal);
 }
 
 .skr-request-details {
   margin-top: 10px;
+}
+.skr-request__tags-keys {
+  font-weight: bold;
+  margin-right: var(--skr-margin-normal);
 }

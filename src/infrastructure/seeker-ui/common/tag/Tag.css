@@ -1,0 +1,24 @@
+.skr-tag__container {
+  padding: 0 5px;
+  height: fit-content;
+}
+
+.skr-tag__container--square {
+  border-radius: var(--skr-border-radius-normal);
+}
+
+.skr-tag__container--round {
+  border-radius: 10px;
+}
+
+.skr-tag__container--outline {
+  background-color: transparent;
+}
+
+.skr-tag__container--onclick {
+  cursor: pointer;
+}
+
+.skr-tag__label {
+  margin-right: 4px;
+}

@@ -3,4 +3,5 @@ export { SkrDetails } from './details/Details';
 export { SkrLabel } from './label/Label';
 export { SkrSelect, SkrSelectOption } from './select/Select';
 export { SkrTab, SkrTabProps } from './tab/Tab';
+export { SkrTag } from './tag/Tag';
 export { SkrTextInput } from './text-input/TextInput';
