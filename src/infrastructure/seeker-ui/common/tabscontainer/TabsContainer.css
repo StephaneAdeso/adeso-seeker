@@ -52,7 +52,7 @@
   border-color: var(--vscode-input-border);
   border-radius: var(--skr-border-radius-normal) var(--skr-border-radius-normal)
     0 0;
-  color: var(--vscode-tab-activeForegroundwhite);
+  color: var(--vscode-tab-activeForeground);
   position: relative;
   top: 1px;
   z-index: 10;

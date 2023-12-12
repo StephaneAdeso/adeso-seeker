@@ -21,9 +21,9 @@ interface SkrTagProps {
 }
 
 export const SkrTag = ({
-  className,
+  className = '',
   text,
-  title = text,
+  title,
   SkrLabel,
   // eslint-disable-next-line no-unused-vars
   id = title,

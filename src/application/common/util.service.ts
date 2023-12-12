@@ -1,3 +1,10 @@
+import {
+  HttpColors,
+  HttpStatusCodes,
+  SatusRanges
+} from '../../domain/enums/http.enum';
+import { HttpStatusInfo } from '../../domain/interfaces/http.interface';
+
 export interface CalculatedBytes {
   /** Size in bytes without any transformation */
   originalBytesize: number;
@@ -94,5 +101,49 @@ export class UtilityService {
     }
 
     return response;
+  }
+
+  // TODO: complete all status code when i have time: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/303
+  /**
+   * Returns information about the given HTTP status code.
+   * https://www.rfc-editor.org/rfc/rfc1945#section-6.1.1
+   * @param code Http status code
+   * @returns
+   */
+  public static getHttpStatusInfo(code: number): HttpStatusInfo {
+    let response: HttpStatusInfo = {
+      title: 'Unknown',
+      description: 'Unknown status code'
+    };
+
+    const status = HttpStatusCodes.find((obj) => obj.code === code);
+
+    if (status) {
+      response = { title: status.title, description: status.description };
+    } else {
+      for (const obj of SatusRanges) {
+        if (code < obj.max) {
+          response = { title: obj.title, description: obj.description };
+          break;
+        }
+      }
+    }
+    return response;
+  }
+
+  /**
+   * Return an hexadecimal color depending on the received status code
+   * @param code Http status code
+   * @returns
+   */
+  public static getHttpStatusColor(code: number): HttpColors {
+    const httpStatusCodes: { [key: string]: HttpColors } = {
+      '2': HttpColors.success,
+      '3': HttpColors.redirection,
+      '4': HttpColors.clientError,
+      '5': HttpColors.serverError
+    };
+    const key = Math.floor(code / 100).toString();
+    return httpStatusCodes[key] || HttpColors.information;
   }
 }

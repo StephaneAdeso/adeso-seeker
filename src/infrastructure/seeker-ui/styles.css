@@ -45,6 +45,7 @@ img {
   --skr-border-radius-normal: 2px;
   /* paddings */
   --skr-padding-normal: 0.3125rem;
+  --skr-padding-large: 0.625rem;
 
   /* margins */
   --skr-margin-xs: 0.125rem;

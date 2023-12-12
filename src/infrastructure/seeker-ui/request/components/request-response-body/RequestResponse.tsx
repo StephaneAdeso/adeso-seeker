@@ -12,14 +12,16 @@ export const SkrResponse = ({ src }: SkrResponseProps): JSX.Element => {
 
   useEffect(() => {
     setJsonData(src);
+    console.log('src :>> ', src);
   }, [src]);
   return (
     <>
       <ReactJson
         src={jsonData}
-        name="response"
+        name={false}
         iconStyle="triangle"
         theme={'monokai'}
+        displayDataTypes={false}
       />
     </>
   );

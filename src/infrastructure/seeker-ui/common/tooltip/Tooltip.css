@@ -1,0 +1,24 @@
+.skr-tooltip__container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: var(--skr-padding-large);
+  background-color: var(--vscode-editor-background);
+  color: var(--vscode-editor-foreground);
+  z-index: 100;
+  height: fit-content;
+  border: 1px solid var(--vscode-input-border);
+}
+
+.skr-tooltip__title {
+  font-weight: bold;
+}
+
+.skr-tooltip__separator {
+  width: 100%;
+  border-color: var(--vscode-input-border);
+}
+
+.skr-tooltip__text {
+  margin: 0;
+}

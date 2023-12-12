@@ -9,16 +9,23 @@ import {
   SkrResponse
 } from './components';
 
-import './Request.css';
-import { FetchResponse } from '../../../domain/interfaces/fetch.interface';
 import { Subscription } from 'rxjs';
-import { HttpColors } from '../../../domain/enums/http.enum';
+import { UtilityService } from '../../../application/common/util.service';
+import { FetchResponse } from '../../../domain/interfaces/fetch.interface';
+import { HttpStatusInfo } from '../../../domain/interfaces/http.interface';
+import { SkrTooltip } from '../common/tooltip/Tooltip';
+import './Request.css';
 
 // COMPONENT-----------------------------------------------------------
 const Request = () => {
   const [queryResponse, setQueryResponse] = useState<FetchResponse>(
     {} as FetchResponse
   );
+  const [statusInfo, setStatusInfo] = useState<HttpStatusInfo>({
+    title: '',
+    description: ''
+  });
+
   // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState(false);
   // eslint-disable-next-line no-unused-vars
@@ -40,6 +47,19 @@ const Request = () => {
         next: (res: FetchResponse) => {
           if (res) {
             setQueryResponse(res);
+            const statInfo: HttpStatusInfo = UtilityService.getHttpStatusInfo(
+              res.status
+            );
+            // if a status message comes from the serve, we add it to the description
+            if (res.statusText) {
+              statInfo.description = ''.concat(
+                'Status text: ',
+                res.statusText,
+                '\n\nGeneric info: ',
+                statInfo.description
+              );
+            }
+            setStatusInfo(statInfo);
             console.log('res :>> ', res);
           }
         },
@@ -49,7 +69,7 @@ const Request = () => {
         },
         complete() {
           setLoading(false);
-          //TODO: setduration should be set when ok and when error.
+          //TODO: setduration (request duration in ms) should be set when ok and when error.
         }
       });
   };
@@ -97,12 +117,25 @@ const Request = () => {
       </SkrDetails>
       <SkrDetails classname="skr-request-details" label="Response body">
         <SkrTabContainer tabs={tabsResponseBody}>
-          <SkrTag
-            backgroundColor={HttpColors.success}
-            SkrLabel={<SkrLabel fontWeight="bold" label="Status:" />}
-            type="fill"
-            text="200"
-          />
+          {queryResponse?.status ? (
+            <SkrTooltip
+              title={statusInfo.title}
+              titleSeparator
+              text={statusInfo.description}
+            >
+              <SkrTag
+                backgroundColor={UtilityService.getHttpStatusColor(
+                  queryResponse.status
+                )}
+                SkrLabel={<SkrLabel fontWeight="bold" label="Status:" />}
+                type="fill"
+                text={`${queryResponse.status}`}
+              />
+            </SkrTooltip>
+          ) : (
+            <span className="skr-request__tags-keys">Status:</span>
+          )}
+
           <span>
             <span className="skr-request__tags-keys">Time:</span>
             {queryResponse.queryDuration?.time &&
