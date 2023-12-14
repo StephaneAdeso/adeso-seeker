@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { Observable, from, map, of } from 'rxjs';
 import {
   FetchConfig,
@@ -13,6 +13,10 @@ let response: FetchResponse = {
   headers: null,
   request: null,
   status: 400,
+  statusInfo: {
+    title: '',
+    description: ''
+  },
   statusText: 'Missing url field',
   startDate: undefined,
   endDate: undefined,
@@ -53,12 +57,23 @@ export class AxiosAdapter implements FetchRepository {
         signal: queryConfig?.controller.signal
       })
     ).pipe(
-      map((res) => {
+      map((res: AxiosResponse<any, any>): FetchResponse => {
         const now = new Date();
         const ellapsedTime = UtilityService.getEllapsedTime(now, startDate, 4);
+        const statInfo = UtilityService.getHttpStatusInfo(res.status);
+        // if a status message comes from the serve, we add it to the description
+        if (res.statusText) {
+          statInfo.description = ''.concat(
+            'Status text: ',
+            res.statusText,
+            '\n\nGeneric info: ',
+            statInfo.description
+          );
+        }
 
         response.data = res.data;
         response.status = res.status;
+        response.statusInfo = statInfo;
         response.headers = res.headers;
         response.config = res.config;
         if (res.request) {

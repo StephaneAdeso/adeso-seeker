@@ -4,7 +4,9 @@ import './Details.css';
 
 interface SkrDetailsProps {
   label: string;
+  /** used to initialize the component. true = open */
   open?: boolean;
+  onToggle?: (isOpen: boolean) => void;
   classname?: string;
   children: ReactNode;
 }
@@ -13,12 +15,16 @@ export const SkrDetails = ({
   label,
   open = false,
   classname = '',
+  onToggle,
   children
 }: SkrDetailsProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(open);
 
   const toggleDetails = () => {
     setIsOpen(!isOpen);
+    if (onToggle) {
+      onToggle(!isOpen);
+    }
   };
 
   return (

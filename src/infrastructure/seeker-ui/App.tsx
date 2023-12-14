@@ -2,10 +2,10 @@ import * as React from 'react';
 import { DocumentTitles } from '../enums/document-titles.enum';
 import './App.css';
 
-const SidebarCollections = React.lazy(
+const SkrSidebarCollections = React.lazy(
   () => import('./sidebar-collections/sidebar-collections')
 );
-const Request = React.lazy(() => import('./request/Request'));
+const SkrQuery = React.lazy(() => import('./query/Query'));
 
 const App = () => {
   return <>{renderUI()}</>;
@@ -14,9 +14,9 @@ const App = () => {
 function renderUI() {
   switch (document.title) {
     case DocumentTitles.sidebarCollections:
-      return <SidebarCollections />;
+      return <SkrSidebarCollections />;
     case DocumentTitles.request:
-      return <Request />;
+      return <SkrQuery />;
     default:
       break;
   }

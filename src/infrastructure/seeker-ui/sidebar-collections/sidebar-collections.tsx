@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/naming-convention
-const SidebarCollections = () => {
+const SkrSidebarCollections = () => {
   return (
     <>
       <p>Collections sidebar works</p>
@@ -7,4 +7,4 @@ const SidebarCollections = () => {
   );
 };
 
-export default SidebarCollections;
+export default SkrSidebarCollections;

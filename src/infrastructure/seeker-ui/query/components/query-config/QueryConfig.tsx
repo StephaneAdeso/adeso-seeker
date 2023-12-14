@@ -6,17 +6,17 @@ import {
 } from '../../../common';
 //import { IconType } from 'react-icons';
 import { VscLayers, VscSave } from 'react-icons/vsc';
-import './RequestConfig.css';
+import './QueryConfig.css';
 
 const envOptions: SkrSelectOption[] = [];
 
-interface requestConfigProps {
+interface SkrQueryConfigProps {
   className?: string;
 }
 
-export const SkrRequestConfig = ({ className = '' }: requestConfigProps) => {
+export const SkrQueryConfig = ({ className = '' }: SkrQueryConfigProps) => {
   return (
-    <div className={`skr-request-config-container ${className}`}>
+    <div className={`skr-query-config__container ${className}`}>
       <SkrSelect
         label="Environment selector"
         skrLabel={<SkrLabel label="Selected environment" />}

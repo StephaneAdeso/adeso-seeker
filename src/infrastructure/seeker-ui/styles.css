@@ -2,20 +2,21 @@
 /* -------------------
 |        RESET       |
 --------------------*/
-html {
+* {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
   font-size: var(--vscode-font-size);
   font-family: var(--vscode-font-family);
   color: var(--vscode-button-foreground);
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-body,
 h1,
 h2,
 h3,
@@ -45,7 +46,7 @@ img {
   --skr-border-radius-normal: 2px;
   /* paddings */
   --skr-padding-normal: 0.3125rem;
-  --skr-padding-large: 0.625rem;
+  --skr-padding-l: 0.625rem;
 
   /* margins */
   --skr-margin-xs: 0.125rem;

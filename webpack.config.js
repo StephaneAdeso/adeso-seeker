@@ -1,11 +1,15 @@
 //@ts-check
 
 'use strict';
+/**
+ * @typedef {import('monaco-editor-webpack-plugin').IMonacoEditorWebpackPluginOpts} MonacoWebpackPluginOptions
+ */
 
 const path = require('path');
 const fs = require('fs');
 const terserPlugin = require('terser-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const cleanDistDirectory = () => {
   const distPath = path.resolve(__dirname, 'dist');
@@ -16,6 +20,26 @@ const cleanDistDirectory = () => {
       fs.unlinkSync(filePath);
     });
   }
+};
+
+/** @type {MonacoWebpackPluginOptions} */
+const monacoPluginOptions = {
+  languages: [
+    'cpp',
+    'csharp',
+    'go',
+    'graphql',
+    'html',
+    'java',
+    'javascript',
+    'json',
+    'php',
+    'python',
+    'restructuredtext',
+    'shell',
+    'typescript',
+    'xml'
+  ]
 };
 
 //@ts-check
@@ -83,7 +107,10 @@ const commonConfig = (env, argv) => {
         })
       ]
     },
-    plugins: [new miniCssExtractPlugin()]
+    plugins: [
+      new miniCssExtractPlugin(),
+      new MonacoWebpackPlugin(monacoPluginOptions)
+    ]
   };
 };
 

@@ -1,0 +1,28 @@
+@import url('../styles.css');
+
+.skr-query__container {
+  padding: var(--skr-margin-l);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
+}
+
+.skr-query__config {
+  margin-bottom: var(--skr-margin-normal);
+}
+
+.skr-query__details {
+  margin-top: 10px;
+}
+
+.skr-query__details--open {
+  flex-grow: 1;
+}
+
+/* TODO: delete if not needed */
+/* .skr-request__tags-keys {
+  font-weight: bold;
+  margin-right: var(--skr-margin-normal);
+} */

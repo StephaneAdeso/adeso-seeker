@@ -7,16 +7,17 @@ import {
   SkrSelectOption,
   SkrTextInput
 } from '../../../common';
-import './RequestInput.css';
+import './QueryInput.css';
 
 type action = 'send' | 'send and download' | undefined;
-export interface SkrInput {
+
+export interface SkrInputConfig {
   method: HttpVerb;
   url: string;
   action: action;
 }
 
-interface SkrRequestInputProps {
+interface SkrQueryInputProps {
   onSend: (value: any) => void;
   type?: HttpVerb;
 }
@@ -30,13 +31,13 @@ const typeOptions: SkrSelectOption[] = Object.values(HttpVerb).map((value) => {
 });
 
 //     COMPONENT -------------------------------------------------------
-export const SkrRequestInput = ({
+export const SkrQueryInput = ({
   onSend,
   type = HttpVerb.get
-}: SkrRequestInputProps): JSX.Element => {
+}: SkrQueryInputProps): JSX.Element => {
   const [text, setText] = useState('');
   // Object returned when user submit.
-  const input: SkrInput = {
+  const input: SkrInputConfig = {
     method: type,
     url: text,
     action: undefined
@@ -57,18 +58,18 @@ export const SkrRequestInput = ({
   };
 
   return (
-    <div className="skr-request-input__container">
+    <div className="skr-query-input__container ">
       <SkrSelect
         options={typeOptions}
         label="Request types"
         selectedId={type}
         onSelect={handleSelect}
-        className="skr-request-input__items-select"
+        className="skr-query-input__items-select"
       />
       <SkrTextInput
         value={text}
         onChange={handleTextChange}
-        className="skr-request-input__items-input-text"
+        className="skr-query-input__items-input-text"
       />
       <SkrButton
         label="Send request"

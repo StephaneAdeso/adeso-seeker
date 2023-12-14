@@ -1,6 +1,6 @@
 @import url('../../../styles.css');
 
-.skr-request-config-container {
+.skr-query-config__container {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;

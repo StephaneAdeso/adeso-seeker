@@ -3,6 +3,7 @@ import {
   TimeMeasures
 } from '../../application/common/util.service';
 import { HttpVerb } from '../enums/http.enum';
+import { HttpStatusInfo } from './http.interface';
 
 export interface FetchConfig {
   method: HttpVerb;
@@ -13,6 +14,7 @@ export interface FetchConfig {
 export interface FetchResponse {
   data: object;
   status: number;
+  statusInfo: HttpStatusInfo;
   statusText: string;
   headers: any;
   config: any;

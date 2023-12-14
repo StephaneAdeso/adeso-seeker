@@ -1,6 +1,6 @@
 @import url('../../../styles.css');
 
-.skr-request-input__container {
+.skr-query-input__container {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -9,10 +9,10 @@
   gap: var(--skr-margin-normal);
 }
 
-.skr-request-input__items-select {
+.skr-query-input__items-select {
   min-width: 80px;
 }
 
-.skr-request-input__items-input-text {
+.skr-query-input__items-input-text {
   width: 100%;
 }
