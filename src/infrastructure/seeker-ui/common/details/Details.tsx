@@ -28,7 +28,7 @@ export const SkrDetails = ({
   };
 
   return (
-    <div className={`${classname}`}>
+    <div className={`skr-details__container ${classname}`}>
       <div onClick={toggleDetails} className="skr-details-header">
         <span
           className={`skr-details-header__icon ${

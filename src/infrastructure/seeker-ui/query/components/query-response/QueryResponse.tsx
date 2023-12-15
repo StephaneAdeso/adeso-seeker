@@ -35,7 +35,10 @@ export const SkrQueryResponse = ({
 
   return (
     <div className={`skr-query-response__container ${className}`}>
-      <SkrTabContainer tabs={tabsContainer}>
+      <SkrTabContainer
+        tabs={tabsContainer}
+        className="skr-query-response__skr-tab-container"
+      >
         {queryResponse?.status ? (
           <SkrTooltip
             title={queryResponse.statusInfo.title}

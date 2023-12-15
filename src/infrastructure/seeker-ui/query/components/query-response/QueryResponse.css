@@ -1,3 +1,12 @@
 .skr-query-response__container {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.skr-query-response__skr-tab-container {
+  /* to remove the height:100% on the child */
+  height: auto;
+  flex-grow: 1;
 }

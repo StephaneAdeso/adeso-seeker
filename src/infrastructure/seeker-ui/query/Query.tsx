@@ -88,7 +88,7 @@ const SkrQuery = () => {
       <SkrQueryInput onSend={onInputSend}></SkrQueryInput>
 
       <SkrDetails
-        classname="skr-query__details"
+        classname={`skr-query__details `}
         label="Request body"
         onToggle={handleReqChange}
         open={reqStatus}
@@ -97,7 +97,9 @@ const SkrQuery = () => {
       </SkrDetails>
 
       <SkrDetails
-        classname="skr-query__details"
+        classname={`skr-query__details ${
+          resStatus ? 'skr-query__details--open' : ''
+        }`}
         label="Response body"
         onToggle={handleResChange}
         open={resStatus}

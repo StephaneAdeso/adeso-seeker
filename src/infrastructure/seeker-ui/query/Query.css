@@ -20,9 +20,3 @@
 .skr-query__details--open {
   flex-grow: 1;
 }
-
-/* TODO: delete if not needed */
-/* .skr-request__tags-keys {
-  font-weight: bold;
-  margin-right: var(--skr-margin-normal);
-} */

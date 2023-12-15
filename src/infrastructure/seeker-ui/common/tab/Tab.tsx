@@ -6,13 +6,15 @@ export interface SkrTabProps {
   id?: string;
   disabled?: boolean;
   children?: ReactNode;
+  className?: string;
 }
 
 export const SkrTab = ({
   label,
   id = label,
   disabled = false,
-  children
+  children,
+  className = ''
 }: SkrTabProps): JSX.Element => {
-  return <div className="skr-tab-container">{children}</div>;
+  return <div className={`skr-tab-container ${className}`}>{children}</div>;
 };
