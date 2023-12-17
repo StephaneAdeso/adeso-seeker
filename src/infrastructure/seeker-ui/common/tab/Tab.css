@@ -1,8 +1,0 @@
-.skr-tab-container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  padding: 5px;
-  position: relative;
-}

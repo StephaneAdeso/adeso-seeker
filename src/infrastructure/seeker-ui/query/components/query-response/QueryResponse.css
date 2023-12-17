@@ -1,5 +1,5 @@
 .skr-query-response__container {
-  height: 100%;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -9,4 +9,10 @@
   /* to remove the height:100% on the child */
   height: auto;
   flex-grow: 1;
+}
+
+.skr-query-response__menu-tag-key {
+  font-weight: bold;
+  margin-right: 2px;
+  color: var(--vscode-foreground);
 }

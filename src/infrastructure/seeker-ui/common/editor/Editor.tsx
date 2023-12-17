@@ -2,44 +2,24 @@
 // https://microsoft.github.io/monaco-editor/docs.html
 // https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IEditorOptions.html
 
-import React, { useEffect, useRef, useState } from 'react';
 import * as monaco from 'monaco-editor';
+import { useEffect, useRef, useState } from 'react';
 
 interface EditorProps {
   value: object;
   language?: string;
+  className?: string;
 }
 
-export const SkrEditor: React.FC<EditorProps> = ({
+export const SkrEditor = ({
   value = {},
-  language = 'json'
-}) => {
+  language = 'json',
+  className = ''
+}: EditorProps): JSX.Element => {
   const editorRef = useRef<HTMLDivElement>(null);
-  // const [editorValue, setEditorValue] = useState(value);
-  // const [editorLanguage, setEditorLanguage] = useState(language);
 
   const [monacoEditor, setMonacoEditor] =
     useState<monaco.editor.IStandaloneCodeEditor>();
-
-  const getConfig = (): monaco.editor.IStandaloneEditorConstructionOptions => {
-    return {
-      autoIndent: 'full',
-      automaticLayout: true,
-      formatOnPaste: true,
-      formatOnType: true,
-      language,
-      minimap: { enabled: false },
-      quickSuggestions: false,
-      readOnly: true,
-      scrollbar: {
-        verticalScrollbarSize: 10,
-        horizontalScrollbarSize: 10
-      },
-      scrollBeyondLastLine: false,
-      theme: 'vs-dark',
-      value: JSON.stringify(value, null, 2)
-    };
-  };
 
   // create the editor element
   useEffect(() => {
@@ -50,17 +30,28 @@ export const SkrEditor: React.FC<EditorProps> = ({
     };
 
     if (!monacoEditor && editorRef.current) {
-      const editor = monaco.editor.create(editorRef.current, getConfig());
+      const editor = monaco.editor.create(editorRef.current, {
+        autoIndent: 'full',
+        automaticLayout: true,
+        formatOnPaste: true,
+        formatOnType: true,
+        language,
+        minimap: { enabled: false },
+        quickSuggestions: false,
+        readOnly: true,
+        scrollbar: {
+          verticalScrollbarSize: 10,
+          horizontalScrollbarSize: 10
+        },
+        scrollBeyondLastLine: false,
+        theme: 'vs-dark',
+        value: JSON.stringify(value, null, 2)
+      });
       setMonacoEditor(editor);
-
+      window.addEventListener('resize', handleResize);
       // Clean editor on unmount
       return () => editor.dispose();
     }
-    window.addEventListener('resize', handleResize);
-
-    // return () => {
-    //   window.removeEventListener('resize', handleResize);
-    // };
   }, []);
 
   // update value
@@ -81,10 +72,6 @@ export const SkrEditor: React.FC<EditorProps> = ({
   }, [language, monacoEditor]);
 
   return (
-    <div
-      id="mierdapati"
-      ref={editorRef}
-      style={{ position: 'relative', boxSizing: 'border-box', height: '100%' }}
-    />
+    <div className={` ${className}`} id="MonacoRootElement" ref={editorRef} />
   );
 };

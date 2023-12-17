@@ -1,12 +1,7 @@
 import { UtilityService } from '../../../../../application/common/util.service';
 import { FetchResponse } from '../../../../../domain/interfaces/fetch.interface';
-import {
-  SkrLabel,
-  SkrTabContainer,
-  SkrTabProps,
-  SkrTag,
-  SkrTooltip
-} from '../../../common';
+import { SkrLabel, SkrTabContainer, SkrTag, SkrTooltip } from '../../../common';
+import { SkrTabProps } from '../../../common/tabscontainer/TabsContainer';
 import './QueryResponse.css';
 import { SkrTabResponse } from './Tabs/response/TabResponse';
 
@@ -33,12 +28,9 @@ export const SkrQueryResponse = ({
     { id: '2', label: 'Tab 2', children: <p>Contenido de la pestaña 2</p> }
   ];
 
-  return (
-    <div className={`skr-query-response__container ${className}`}>
-      <SkrTabContainer
-        tabs={tabsContainer}
-        className="skr-query-response__skr-tab-container"
-      >
+  const getTabsMenu = () => {
+    return (
+      <>
         {queryResponse?.status ? (
           <SkrTooltip
             title={queryResponse.statusInfo.title}
@@ -55,21 +47,32 @@ export const SkrQueryResponse = ({
             />
           </SkrTooltip>
         ) : (
-          <span className="skr-request__tags-keys">Status:</span>
+          <span className="skr-query-response__menu-tag-key">Status:</span>
         )}
 
         <span>
-          <span className="skr-request__tags-keys">Time:</span>
+          <span className="skr-query-response__menu-tag-key">Time:</span>
           {queryResponse.queryDuration?.time &&
             queryResponse.queryDuration?.measure &&
             `${queryResponse.queryDuration.time} ${queryResponse.queryDuration.measure}`}
         </span>
         <span>
-          <span className="skr-request__tags-keys">Size:</span>
+          <span className="skr-query-response__menu-tag-key">Size:</span>
           {queryResponse.size?.length &&
             queryResponse.size?.measure &&
             `${queryResponse.size.length} ${queryResponse.size.measure}`}
         </span>
+      </>
+    );
+  };
+
+  return (
+    <div className={`skr-query-response__container ${className}`}>
+      <SkrTabContainer
+        tabs={tabsContainer}
+        className="skr-query-response__skr-tab-container"
+      >
+        {getTabsMenu()}
       </SkrTabContainer>
     </div>
   );

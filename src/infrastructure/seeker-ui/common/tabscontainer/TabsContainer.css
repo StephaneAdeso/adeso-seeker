@@ -1,7 +1,7 @@
 /* styles.css */
 
 /* Contenedor de pestañas */
-.skr-tabs-container {
+.skr-tabs__container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -12,7 +12,7 @@
 }
 
 /* Encabezado de la pestaña */
-.skr-tabs-header {
+.skr-tabs__header {
   display: flex;
   flex-direction: row;
   height: var(--skr-height-normal);
@@ -24,7 +24,7 @@
 }
 
 /* Estilo para las pestañas */
-.skr-tabs-header__button {
+.skr-tabs__header-button {
   background-color: var(--vscode-tab-activeBackground);
   height: 100%;
   cursor: pointer;
@@ -32,24 +32,25 @@
   text-wrap: nowrap;
 }
 
-.skr-tabs-header__childrens {
+.skr-tabs__header-childrens {
   height: 100%;
-  width: 100%;
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-end;
   gap: 15px;
   padding-right: var(--skr-padding-normal);
+  flex-grow: 1;
+  align-items: center;
 }
 
-.skr-tabs-header__button--inactive {
+.skr-tabs__header-button--inactive {
   border: none;
   outline: none;
   color: var(--vscode-tab-inactiveForeground);
 }
 
 /* Estilo para la pestaña activa */
-.skr-tab-header__button--active {
+.skr-tab__header-button--active {
   border-width: 1px 1px 0 1px;
   border-style: solid;
   border-color: var(--vscode-input-border);
@@ -61,7 +62,7 @@
   z-index: 10;
 }
 
-.skr-tab-content--active {
+.skr-tab__content--active {
   flex-grow: 1;
   display: flex;
   flex-direction: column;

@@ -29,24 +29,24 @@ export const SkrDetails = ({
 
   return (
     <div className={`skr-details__container ${classname}`}>
-      <div onClick={toggleDetails} className="skr-details-header">
+      <div onClick={toggleDetails} className="skr-details__header">
         <span
-          className={`skr-details-header__icon ${
-            isOpen ? 'skr-details-header__icon--open' : ''
+          className={`skr-details__header-icon ${
+            isOpen ? 'skr-details__header-icon--open' : ''
           }`}
         >
           {createElement(VscChevronRight)}
         </span>
 
         <span>{label}</span>
-        <div className="skr-details-header__separator-container">
-          <div className="skr-details-header__separator"></div>
+        <div className="skr-details__header-separator-container">
+          <div className="skr-details__header-separator"></div>
         </div>
       </div>
 
       <div
-        className={`skr-details-content ${
-          isOpen ? 'skr-details-content--open' : ''
+        className={` ${
+          isOpen ? 'skr-details__content--open' : 'skr-details__content--closed'
         }`}
       >
         {children}

@@ -18,7 +18,10 @@ export const SkrTabResponse = ({
       {isLoading ? (
         <div> Loading data...</div>
       ) : (
-        <SkrEditor value={queryResponse.data} />
+        <SkrEditor
+          value={queryResponse.data}
+          className="skr-tab-response__editor"
+        />
       )}
     </div>
   );

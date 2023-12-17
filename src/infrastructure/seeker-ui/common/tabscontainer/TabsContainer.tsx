@@ -1,10 +1,17 @@
-import { useState } from 'react';
-import { SkrTab, SkrTabProps } from './../index';
+import { ReactNode, useState } from 'react';
 import './TabsContainer.css';
 
 interface TabContainerProps {
   children?: React.ReactNode;
   tabs: SkrTabProps[];
+  className?: string;
+}
+
+export interface SkrTabProps {
+  label: string;
+  id?: string;
+  disabled?: boolean;
+  children?: ReactNode;
   className?: string;
 }
 
@@ -20,14 +27,14 @@ export const SkrTabContainer = ({
   };
 
   return (
-    <div className={`skr-tabs-container ${className}`}>
-      <div className="skr-tabs-header">
+    <div className={`skr-tabs__container ${className}`}>
+      <div className="skr-tabs__header">
         {tabs.map((tab) => (
           <button
-            className={`skr-tabs-header__button ${
+            className={`skr-tabs__header-button ${
               selectedTab === tab.id
-                ? 'skr-tab-header__button--active'
-                : 'skr-tabs-header__button--inactive'
+                ? 'skr-tab__header-button--active'
+                : 'skr-tabs__header-button--inactive'
             }`}
             key={tab.id}
             onClick={() => handleClick(tab.id!)}
@@ -36,21 +43,20 @@ export const SkrTabContainer = ({
           </button>
         ))}
         {children && (
-          <div className="skr-tabs-header__childrens">{children}</div>
+          <div className="skr-tabs__header-childrens">{children}</div>
         )}
       </div>
-      <div className={` skr-tab-content--active`}>
-        {tabs.map((tab) => {
-          if (tab.id === selectedTab) {
-            return (
-              <SkrTab key={tab.id} label={tab.label}>
-                {tab.children}
-              </SkrTab>
-            );
-          }
-          return null;
-        })}
-      </div>
+
+      {tabs.map((tab) => {
+        if (tab.id === selectedTab) {
+          return (
+            <div className={` skr-tab__content--active`} key={tab.id}>
+              {tab.children}
+            </div>
+          );
+        }
+        return null;
+      })}
     </div>
   );
 };
