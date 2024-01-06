@@ -31,15 +31,15 @@
           "type": "webview"
         },
         {
-          "id": "seeker.environments-tree",
-          "name": "Environments",
-          "contextualTitle": "Environments",
-          "type": "tree"
-        },
-        {
           "id": "seeker.historySidebar",
           "name": "History",
           "contextualTitle": "History",
+          "type": "webview"
+        },
+        {
+          "id": "seeker.environments-tree",
+          "name": "Environments",
+          "contextualTitle": "Environments",
           "type": "tree"
         }
       ]
