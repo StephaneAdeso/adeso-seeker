@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { environment } from './environment-config';
 import { PersistanceService } from './application/persistence/persistence.service';
-import { registerCollectionViewProvider } from './infrastructure/views/collection.view-provider';
+import { registerCollectionViewProvider } from './infrastructure/views/collections/collection.view-provider';
 import { registerRequestWebview } from './infrastructure/webviews/request.webview';
 
 export function activate(context: vscode.ExtensionContext) {

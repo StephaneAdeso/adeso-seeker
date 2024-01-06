@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import * as vscode from 'vscode';
-import { UtilityService as Us } from '../../application/common/util.service';
-import { DocumentTitles } from '../enums/document-titles.enum';
+import { UtilityService as Us } from '../../../application/common/util.service';
+import { DocumentTitles } from '../../enums/document-titles.enum';
 
 export class CollectionSidebarViewProvider
   implements vscode.WebviewViewProvider
