@@ -1,17 +1,17 @@
-import { FetchResponse } from '../../../../../../../domain/interfaces/fetch.interface';
+import { QueryResult } from '../../../../../../../domain/models/query-result.model';
 import { SkrEditor } from '../../../../../common';
 import './TabResponse.css';
 
 interface SkrTabResponseProps {
   className?: string;
-  queryResponse: FetchResponse;
+  queryResult: QueryResult;
   isLoading?: boolean;
 }
 
 export const SkrTabResponse = ({
   className = '',
   isLoading = false,
-  queryResponse
+  queryResult: queryResult
 }: SkrTabResponseProps): JSX.Element => {
   return (
     <div className={`skr-tab-response__container ${className}`}>
@@ -19,7 +19,7 @@ export const SkrTabResponse = ({
         <div> Loading data...</div>
       ) : (
         <SkrEditor
-          value={queryResponse.data}
+          value={queryResult.data}
           className="skr-tab-response__editor"
         />
       )}

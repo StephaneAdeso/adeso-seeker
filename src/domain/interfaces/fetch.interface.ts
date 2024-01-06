@@ -1,37 +1,9 @@
-import {
-  BytesMeasures,
-  TimeMeasures
-} from '../../application/common/util.service';
-import { HttpVerb } from '../enums/http.enum';
-import { HttpStatusInfo } from './http.interface';
+import { Query } from '../models/query.model';
 
+/** Used to type the query configuration object that will be used
+ * by the query engine like axios or any other.
+ */
 export interface FetchConfig {
-  method: HttpVerb;
-  url: string;
-  controller: AbortController;
-}
-
-export interface FetchResponse {
-  data: object;
-  status: number;
-  statusInfo: HttpStatusInfo;
-  statusText: string;
-  headers: any;
-  config: any;
-  request: any;
-  startDate: Date | undefined;
-  endDate: Date | undefined;
-  size: FetchByteSize;
-  /** duration of the query in seconds */
-  queryDuration: FetchEllapsedTime;
-}
-
-export interface FetchByteSize {
-  /** length of the response body */
-  length: number;
-  measure: BytesMeasures;
-}
-export interface FetchEllapsedTime {
-  time: number;
-  measure: TimeMeasures;
+  query: Query;
+  abortController: AbortController;
 }

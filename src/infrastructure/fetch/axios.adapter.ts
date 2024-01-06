@@ -1,34 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 import { Observable, from, map, of } from 'rxjs';
-import {
-  FetchConfig,
-  FetchResponse
-} from '../../domain/interfaces/fetch.interface';
+import { FetchConfig } from '../../domain/interfaces/fetch.interface';
+import { QueryResult } from '../../domain/models/query-result.model';
 import { FetchRepository } from '../../domain/repositories/fetch.repository';
-import { UtilityService } from '../../application/common/util.service';
-
-let response: FetchResponse = {
-  config: {},
-  data: {},
-  headers: null,
-  request: null,
-  status: 400,
-  statusInfo: {
-    title: '',
-    description: ''
-  },
-  statusText: 'Missing url field',
-  startDate: undefined,
-  endDate: undefined,
-  size: {
-    length: 0,
-    measure: 'bytes'
-  },
-  queryDuration: {
-    time: 0,
-    measure: 'ms'
-  }
-};
 
 export class AxiosAdapter implements FetchRepository {
   loadInterceptors(): void {
@@ -42,58 +16,31 @@ export class AxiosAdapter implements FetchRepository {
     //   }
     // );
   }
-
-  execute(queryConfig: FetchConfig): Observable<FetchResponse> {
-    if (!queryConfig.url) {
-      return of(response);
+  execute(queryConfig: FetchConfig): Observable<QueryResult> {
+    if (!queryConfig.query.url) {
+      return of(new QueryResult(null, null));
     }
 
     const startDate = new Date();
 
     return from(
       axios({
-        method: queryConfig.method,
-        url: queryConfig.url,
-        signal: queryConfig?.controller.signal
+        method: queryConfig.query.method,
+        url: queryConfig.query.url,
+        signal: queryConfig.abortController.signal
       })
     ).pipe(
-      map((res: AxiosResponse<any, any>): FetchResponse => {
-        const now = new Date();
-        const ellapsedTime = UtilityService.getEllapsedTime(now, startDate, 4);
-        const statInfo = UtilityService.getHttpStatusInfo(res.status);
-        // if a status message comes from the serve, we add it to the description
-        if (res.statusText) {
-          statInfo.description = ''.concat(
-            'Status text: ',
-            res.statusText,
-            '\n\nGeneric info: ',
-            statInfo.description
-          );
-        }
+      map((res: AxiosResponse<any, any>): QueryResult => {
+        const queryResult: QueryResult = new QueryResult(
+          res.headers,
+          res.data,
+          startDate,
+          new Date(),
+          res.status,
+          res?.statusText
+        );
 
-        response.data = res.data;
-        response.status = res.status;
-        response.statusInfo = statInfo;
-        response.headers = res.headers;
-        response.config = res.config;
-        if (res.request) {
-          response.request = res.request;
-        }
-        response.startDate = startDate;
-        response.endDate = now;
-        response.queryDuration = {
-          time: ellapsedTime.calculatedTime,
-          measure: ellapsedTime.calculatedMeasure
-        };
-
-        response.size = {
-          length: UtilityService.getByteSize(JSON.stringify(res.data), 2)
-            .calculatedSize,
-          measure: UtilityService.getByteSize(JSON.stringify(res.data), 2)
-            .calculatedMesure
-        };
-
-        return response;
+        return queryResult;
       })
     );
   }

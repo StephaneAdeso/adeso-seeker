@@ -3,9 +3,11 @@
   flex-direction: column;
   flex-wrap: nowrap;
   flex-grow: 1;
+  flex-shrink: 1;
 }
 
 .skr-tab-response__editor {
   position: relative;
   flex-grow: 1;
+  flex-shrink: 1;
 }

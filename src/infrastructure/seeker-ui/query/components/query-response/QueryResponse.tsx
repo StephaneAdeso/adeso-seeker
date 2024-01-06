@@ -1,5 +1,10 @@
-import { UtilityService } from '../../../../../application/common/util.service';
-import { FetchResponse } from '../../../../../domain/interfaces/fetch.interface';
+import {
+  CalculatedBytes,
+  CalculatedTime,
+  UtilityService
+} from '../../../../../application/common/util.service';
+import { HttpStatusInfo } from '../../../../../domain/interfaces/http.interface';
+import { QueryResult } from '../../../../../domain/models/query-result.model';
 import { SkrLabel, SkrTabContainer, SkrTag, SkrTooltip } from '../../../common';
 import { SkrTabProps } from '../../../common/tabscontainer/TabsContainer';
 import './QueryResponse.css';
@@ -7,13 +12,13 @@ import { SkrTabResponse } from './Tabs/response/TabResponse';
 
 interface SkrResponseProps {
   /** query response data */
-  queryResponse: FetchResponse;
+  queryResult: QueryResult;
   isLoading?: boolean;
   className?: string;
 }
 // TODO: control when there is no json data
 export const SkrQueryResponse = ({
-  queryResponse,
+  queryResult,
   isLoading = false,
   className = ''
 }: SkrResponseProps): JSX.Element => {
@@ -22,28 +27,46 @@ export const SkrQueryResponse = ({
       id: '1',
       label: 'Response',
       children: (
-        <SkrTabResponse isLoading={isLoading} queryResponse={queryResponse} />
+        <SkrTabResponse isLoading={isLoading} queryResult={queryResult} />
       )
     },
     { id: '2', label: 'Tab 2', children: <p>Contenido de la pestaña 2</p> }
   ];
 
+  const { data, startDate, endDate, status, statusText } = queryResult;
+
+  // Generate information about the status code of the response
+  let statusInfo: HttpStatusInfo | null = null;
+  if (status) {
+    statusInfo = UtilityService.getHttpStatusInfo(status, statusText);
+  }
+
+  // Generate duration information about the query
+  let queryDuration: CalculatedTime | null = null;
+  if (startDate && endDate) {
+    queryDuration = UtilityService.getEllapsedTime(startDate, endDate);
+  }
+
+  // Generate size info of the query
+  let size: CalculatedBytes | null = null;
+  if (data) {
+    size = UtilityService.getByteSize(JSON.stringify(data), 2);
+  }
+
   const getTabsMenu = () => {
     return (
       <>
-        {queryResponse?.status ? (
+        {status ? (
           <SkrTooltip
-            title={queryResponse.statusInfo.title}
+            title={statusInfo?.title || ''}
             titleSeparator
-            text={queryResponse.statusInfo.description}
+            text={statusInfo?.description || ''}
           >
             <SkrTag
-              backgroundColor={UtilityService.getHttpStatusColor(
-                queryResponse.status
-              )}
+              backgroundColor={UtilityService.getHttpStatusColor(status)}
               SkrLabel={<SkrLabel fontWeight="bold" label="Status:" />}
               type="fill"
-              text={`${queryResponse.status}`}
+              text={`${status}`}
             />
           </SkrTooltip>
         ) : (
@@ -52,15 +75,15 @@ export const SkrQueryResponse = ({
 
         <span>
           <span className="skr-query-response__menu-tag-key">Time:</span>
-          {queryResponse.queryDuration?.time &&
-            queryResponse.queryDuration?.measure &&
-            `${queryResponse.queryDuration.time} ${queryResponse.queryDuration.measure}`}
+          {queryDuration?.calculatedTime &&
+            queryDuration?.calculatedMeasure &&
+            `${queryDuration.calculatedTime} ${queryDuration.calculatedMeasure}`}
         </span>
         <span>
           <span className="skr-query-response__menu-tag-key">Size:</span>
-          {queryResponse.size?.length &&
-            queryResponse.size?.measure &&
-            `${queryResponse.size.length} ${queryResponse.size.measure}`}
+          {size?.calculatedSize &&
+            size?.calculatedMeasure &&
+            `${size.calculatedSize} ${size.calculatedMeasure}`}
         </span>
       </>
     );

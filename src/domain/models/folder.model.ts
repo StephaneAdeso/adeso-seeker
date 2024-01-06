@@ -1,11 +1,11 @@
-import { randomUUID } from 'crypto';
+import { v4 as uuidv4 } from 'uuid';
 import { TreeStructure } from '../interfaces/tree-structure.interface';
-import { Request } from './request.model';
 
 export class Folder implements TreeStructure {
-  uuid: string = randomUUID();
+  uuid: string = `fol-${uuidv4()}`;
   name: string = '';
-  items: (Folder | Request)[] = [];
+  // The uuid of the folder or collection of this folder. Folders can be nested.
+  parentUuid: string = '';
 
   constructor() {}
 }

@@ -5,14 +5,15 @@ import { SkrTabContainer } from '../common/tabscontainer/TabsContainer';
 import { SkrQueryConfig, SkrQueryInput, SkrQueryResponse } from './components';
 
 import { Subscription } from 'rxjs';
-import { FetchResponse } from '../../../domain/interfaces/fetch.interface';
+import { Query } from '../../../domain/models/query.model';
 import './Query.css';
 import { SkrInputConfig } from './components/query-input/QueryInput';
+import { QueryResult } from '../../../domain/models/query-result.model';
 
 // COMPONENT-----------------------------------------------------------
 const SkrQuery = () => {
-  const [queryResponse, setQueryResponse] = useState<FetchResponse>(
-    {} as FetchResponse
+  const [queryResponse, setQueryResponse] = useState<QueryResult>(
+    new QueryResult(null, null)
   );
 
   const [loading, setLoading] = useState(false);
@@ -40,12 +41,11 @@ const SkrQuery = () => {
     abortController = new AbortController();
     subscription = FetchService.getInstance()
       .execute({
-        method: inputConfig.method,
-        url: inputConfig.url,
-        controller: abortController!
+        query: new Query(inputConfig.url, inputConfig.method),
+        abortController: abortController!
       })
       .subscribe({
-        next: (res: FetchResponse) => {
+        next: (res: QueryResult) => {
           if (res) {
             setQueryResponse(res);
           }
@@ -104,7 +104,7 @@ const SkrQuery = () => {
         onToggle={handleResChange}
         open={resStatus}
       >
-        <SkrQueryResponse queryResponse={queryResponse} isLoading={loading} />
+        <SkrQueryResponse queryResult={queryResponse} isLoading={loading} />
       </SkrDetails>
     </div>
   );

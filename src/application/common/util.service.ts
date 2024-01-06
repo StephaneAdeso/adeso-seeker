@@ -9,7 +9,7 @@ export interface CalculatedBytes {
   /** Size in bytes without any transformation */
   originalBytesize: number;
   calculatedSize: number;
-  calculatedMesure: BytesMeasures;
+  calculatedMeasure: BytesMeasures;
 }
 export interface CalculatedTime {
   /** Size in bytes without any transformation */
@@ -53,7 +53,7 @@ export class UtilityService {
     const response: CalculatedBytes = {
       originalBytesize: new TextEncoder().encode(text).length,
       calculatedSize: 0,
-      calculatedMesure: 'bytes'
+      calculatedMeasure: 'bytes'
     };
 
     for (const { max, measure } of measures) {
@@ -61,7 +61,7 @@ export class UtilityService {
         response.calculatedSize = parseFloat(
           (response.originalBytesize / (max / 1024)).toFixed(decimals)
         );
-        response.calculatedMesure = measure;
+        response.calculatedMeasure = measure;
         break;
       }
     }
@@ -75,7 +75,11 @@ export class UtilityService {
    * @param decimals
    * @returns
    */
-  public static getEllapsedTime(date1: Date, date2: Date, decimals: number) {
+  public static getEllapsedTime(
+    date1: Date,
+    date2: Date,
+    decimals: number = 4
+  ) {
     const measures: { max: number; measure: TimeMeasures; divider: number }[] =
       [
         { max: 1000, measure: 'ms', divider: 1 },
@@ -107,26 +111,40 @@ export class UtilityService {
   /**
    * Returns information about the given HTTP status code.
    * https://www.rfc-editor.org/rfc/rfc1945#section-6.1.1
-   * @param code Http status code
+   * @param statusCode Http status code
+   * @param statusText Sometimes, server also returns a status text
    * @returns
    */
-  public static getHttpStatusInfo(code: number): HttpStatusInfo {
+  public static getHttpStatusInfo(
+    statusCode: number,
+    statusText: string = ''
+  ): HttpStatusInfo {
     let response: HttpStatusInfo = {
       title: 'Unknown',
       description: 'Unknown status code'
     };
 
-    const status = HttpStatusCodes.find((obj) => obj.code === code);
+    const status = HttpStatusCodes.find((obj) => obj.code === statusCode);
 
     if (status) {
       response = { title: status.title, description: status.description };
     } else {
       for (const obj of SatusRanges) {
-        if (code < obj.max) {
+        if (statusCode < obj.max) {
           response = { title: obj.title, description: obj.description };
           break;
         }
       }
+    }
+
+    // if server status text exist, we concatenate it with the description
+    if (statusText) {
+      response.description = ''.concat(
+        'Status text: ',
+        statusText,
+        '\n\nGeneric info: ',
+        response.description
+      );
     }
     return response;
   }

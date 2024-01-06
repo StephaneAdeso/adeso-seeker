@@ -2,6 +2,8 @@
 // https://microsoft.github.io/monaco-editor/docs.html
 // https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IEditorOptions.html
 
+//TODO: posible alternative https://github.com/react-syntax-highlighter/react-syntax-highlighter
+
 import * as monaco from 'monaco-editor';
 import { useEffect, useRef, useState } from 'react';
 
