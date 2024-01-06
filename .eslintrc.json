@@ -23,6 +23,7 @@
         "leadingUnderscore": "allow"
       }
     ],
+    "no-unused-vars": "warn",
     "@typescript-eslint/semi": "warn",
     "curly": "warn",
     "eqeqeq": "warn",

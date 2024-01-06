@@ -45,7 +45,7 @@ export const SkrSelect = ({
   onSelect,
   options,
   selectedId = undefined
-}: SkrSelectProps) => {
+}: SkrSelectProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOptionId, setSelectedOptionId] = useState(selectedId);
   const [selectedLabel, setSelectedLabel] = useState('');
