@@ -3,10 +3,8 @@ import * as vscode from 'vscode';
 import { UtilityService as Us } from '../../../application/common/util.service';
 import { DocumentTitles } from '../../enums/document-titles.enum';
 
-export class CollectionSidebarViewProvider
-  implements vscode.WebviewViewProvider
-{
-  public static readonly viewType = 'seeker.collectionsSidebar';
+export class HistorySidebarViewProvider implements vscode.WebviewViewProvider {
+  public static readonly viewType = 'seeker.historySidebar';
   private _view?: vscode.WebviewView;
 
   constructor(private readonly _extensionUri: vscode.Uri) {}
@@ -38,7 +36,7 @@ export class CollectionSidebarViewProvider
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             
             <link href="${styleUri}" rel="stylesheet" type="text/css"/> 
-            <title>${DocumentTitles.sidebarCollections}</title>            
+            <title>${DocumentTitles.sidebarHistory}</title>            
         </head>
         <body>    
             
@@ -50,17 +48,17 @@ export class CollectionSidebarViewProvider
 }
 
 /**
- * Register the Sidebar Collections view in vscode and
+ * Register the Sidebar history view in vscode and
  * add the disposable to vscode extension context.
- * @param contexte vscode disposable.
+ * @param context vscode disposable.
  */
-export const registerCollectionViewProvider = (
+export const registerSidebarHistoryViewProvider = (
   context: vscode.ExtensionContext
 ): void => {
   context.subscriptions.push(
     vscode.window.registerWebviewViewProvider(
-      CollectionSidebarViewProvider.viewType,
-      new CollectionSidebarViewProvider(context.extensionUri)
+      HistorySidebarViewProvider.viewType,
+      new HistorySidebarViewProvider(context.extensionUri)
     )
   );
 };

@@ -4,6 +4,7 @@
  */
 export enum DocumentTitles {
   sidebarCollections = 'Seeker sidebar collections',
+  sidebarHistory = 'Seeker sidebar history',
   request = 'Seeker request',
   collections = 'Seeker collection'
 }

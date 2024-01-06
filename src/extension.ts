@@ -1,15 +1,19 @@
 import * as vscode from 'vscode';
 import { environment } from './environment-config';
 import { PersistanceService } from './application/persistence/persistence.service';
-import { registerCollectionViewProvider } from './infrastructure/views/collections/collection.view-provider';
+import {
+  registerSidebarCollectionViewProvider,
+  registerSidebarHistoryViewProvider
+} from './infrastructure/views';
 import { registerRequestWebview } from './infrastructure/webviews/request.webview';
 
 export function activate(context: vscode.ExtensionContext) {
   // init data base
   PersistanceService.getInstance().initService(context);
 
-  // register sidebar collection view
-  registerCollectionViewProvider(context);
+  // Register all the sidebar views
+  registerSidebarCollectionViewProvider(context);
+  registerSidebarHistoryViewProvider(context);
 
   // register Request webview with corresponding command
   registerRequestWebview(context);

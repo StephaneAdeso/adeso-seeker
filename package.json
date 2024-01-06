@@ -37,7 +37,7 @@
           "type": "tree"
         },
         {
-          "id": "seeker.history-tree",
+          "id": "seeker.historySidebar",
           "name": "History",
           "contextualTitle": "History",
           "type": "tree"
