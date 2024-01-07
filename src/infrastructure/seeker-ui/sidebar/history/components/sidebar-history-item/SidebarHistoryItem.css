@@ -2,11 +2,38 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  cursor: pointer;
+  color: var(--vscode-foreground);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.skr-sidebar-history-item__container:hover {
+  background-color: var(--vscode-inputOption-activeBackground);
 }
 
 .skr-sidebar-history-item__info {
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.skr-sidebar-history-item__date {
+  margin-right: 10px;
+}
+
+.skr-sidebar-history-item__tag {
+  padding: 0 5px;
+  border-radius: 5px;
+  margin-right: var(--skr-margin-normal);
+  display: flex;
+  text-align: center;
+  font-weight: bold;
+  font-size: smaller;
+  width: fit-content;
+  flex-direction: column;
   flex-wrap: nowrap;
 }
 
@@ -14,4 +41,8 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+}
+
+.skr-sidebar-history-item__text--description {
+  color: var(--vscode-descriptionForeground);
 }

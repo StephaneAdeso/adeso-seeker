@@ -3,7 +3,7 @@ import { HttpColors, HttpVerb } from '../../../../../../domain/enums/http.enum';
 
 interface SkrSidebarHistoryItemProps {
   classname?: string;
-  id: string;
+  key: string;
   date: Date;
   method?: HttpVerb;
   methodColor?: HttpColors;
@@ -14,7 +14,7 @@ interface SkrSidebarHistoryItemProps {
 
 export const SkrSidebarHistoryItem = ({
   classname = '',
-  id,
+  key,
   date,
   method = HttpVerb.get,
   methodColor = HttpColors.success,
@@ -23,19 +23,28 @@ export const SkrSidebarHistoryItem = ({
   onClick
 }: SkrSidebarHistoryItemProps): JSX.Element => {
   return (
-    <div className={`skr-sidebar-history-item-container ${classname}`}>
+    <div className={`skr-sidebar-history-item__container ${classname}`}>
       <div className="skr-sidebar-history-item__info">
-        <div style={{ backgroundColor: methodColor }}>{method}</div>
-        <div className=".skr-sidebar-history-item__text-container">
+        <div
+          style={{ backgroundColor: methodColor }}
+          className="skr-sidebar-history-item__tag"
+        >
+          {method.toUpperCase()}
+        </div>
+        <div className="skr-sidebar-history-item__text-container">
           {title && <div>{title}</div>}
           {!title && <div>{text}</div>}
         </div>
-        {title && <div>{text}</div>}
       </div>
-      <div className="skr-sidebar-history-item__info">
-        <div>{date.toISOString()}</div>
-        <div>xxx days ago</div>
+      {title && (
+        <div className="skr-sidebar-history-item__text--description">
+          {text}
+        </div>
+      )}
+      <div className="skr-sidebar-history-item__info skr-sidebar-history-item__text--description">
+        <div>{`${date.toISOString().slice(0, 10)}`}</div>
       </div>
     </div>
   );
+  // TODO: SEGUIR ESTILANDO LAS FECHAS
 };

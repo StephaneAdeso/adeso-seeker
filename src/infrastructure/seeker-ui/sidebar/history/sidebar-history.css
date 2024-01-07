@@ -1,0 +1,4 @@
+.skr-sidebar-history__separator {
+  border-bottom: 1px solid var(--vscode-input-border);
+  margin: 5px 0 8px 0;
+}

@@ -14,7 +14,7 @@ body {
   height: 100%;
   font-size: var(--vscode-font-size);
   font-family: var(--vscode-font-family);
-  color: var(--vscode-button-foreground);
+  color: var(--vscode-foreground);
 }
 
 h1,
@@ -42,8 +42,10 @@ img {
 :root {
   /* heights */
   --skr-height-normal: 28px;
+
   /* border radius */
   --skr-border-radius-normal: 2px;
+
   /* paddings */
   --skr-padding-normal: 0.3125rem;
   --skr-padding-l: 0.625rem;
@@ -52,4 +54,6 @@ img {
   --skr-margin-xs: 0.125rem;
   --skr-margin-normal: 0.3125rem;
   --skr-margin-l: 0.625rem;
+
+  /* z-index */
 }

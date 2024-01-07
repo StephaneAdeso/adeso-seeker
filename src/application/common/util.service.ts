@@ -22,6 +22,7 @@ export type BytesMeasures = 'bytes' | 'KB' | 'MB' | 'GB';
 export type TimeMeasures = 'ms' | 'sec' | 'min' | 'hr';
 
 export class UtilityService {
+  /** Generate a unique identifier. Used in html elements */
   public static readonly getNonce = () => {
     let text = '';
     const possible =
